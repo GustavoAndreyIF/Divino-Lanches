@@ -6,9 +6,12 @@
   "scripts": {
     "start": "node dist/backend/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
+    "copy-html": "cp src/frontend/pages/index.html dist/frontend/pages/index.html",
+    "copy-css": "cp src/frontend/styles/main.css dist/frontend/styles/main.css",
+    "copy-env": "cp .env dist/.env",
     "build-backend": "tsc --project tsconfig.backend.json",
     "build-frontend": "tsc --project tsconfig.frontend.json",
-    "build": "npm run build-backend && npm run build-frontend",
+    "build": "npm run build-backend && npm run build-frontend && npm run copy-html && npm run copy-css && npm run copy-env",
     "format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
   },
   "keywords": [],
