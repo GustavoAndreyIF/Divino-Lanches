@@ -54,7 +54,8 @@ Este arquivo contém metadados sobre o projeto e as dependências necessárias.
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "express-generator": "^4.16.1"
   }
 }
 ```
