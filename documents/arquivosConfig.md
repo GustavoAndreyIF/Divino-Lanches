@@ -30,15 +30,16 @@ Este arquivo contém metadados sobre o projeto e as dependências necessárias.
 
 ```json
 {
-{
   "name": "divino-lanches",
   "version": "1.0.0",
-  "description": "",
-  "main": "prettier.config.js",
+  "description": "E-commerce site for Divino Lanches",
+  "main": "dist/backend/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
+    "start": "node dist/backend/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
+    "build-backend": "tsc --project tsconfig.backend.json",
+    "build-frontend": "tsc --project tsconfig.frontend.json",
+    "build": "npm run build-backend && npm run build-frontend",
     "format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
   },
   "keywords": [],
@@ -61,7 +62,9 @@ Este arquivo contém metadados sobre o projeto e as dependências necessárias.
 - **scripts**: Scripts para automação de tarefas:
   - **start**: Executa o arquivo principal compilado.
   - **dev**: Executa o projeto em modo de desenvolvimento com `ts-node-dev`.
-  - **build**: Compila o projeto TypeScript.
+  - **build**: Compila o projeto.
+  - **build-backend**: Compila os arquivos do backend.
+  - **build-frontend**: Compila os arquivos do frontend.
   - **format**: Formata o código com Prettier.
 
 ### `tsconfig.json`
@@ -71,33 +74,75 @@ Este arquivo configura o compilador TypeScript.
 ```json
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2020",
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
 ```
 
-- **compilerOptions**: Opções do compilador TypeScript.
-  - **target**: Define a versão alvo do JavaScript (`ES6`).
-  - **module**: Define o sistema de módulos (`commonjs`).
-  - **outDir**: Diretório de saída para os arquivos compilados (`./dist`).
-  - **rootDir**: Diretório raiz do código-fonte (`./src`).
-  - **strict**: Habilita verificações estritas.
-  - **esModuleInterop**: Habilita interoperabilidade com módulos ES.
-  - **skipLibCheck**: Pula verificação de tipos em arquivos de declaração.
+## `compilerOptions`
+
+Opções do compilador TypeScript.
+
+- **target**: Define a versão alvo do JavaScript (`ES2020`).
+- **module**: Define o sistema de módulos (`commonjs`).
+- **strict**: Habilita verificações estritas.
+- **esModuleInterop**: Habilita interoperabilidade com módulos ES.
+- **skipLibCheck**: Pula verificação de tipos em arquivos de declaração.
+- **forceConsistentCasingInFileNames**: Força consistência de capitalização nos nomes dos arquivos.
+- **baseUrl**: Define a base para resolução de módulos não relativos (`.`).
+- **paths**: Mapeia importações de módulos para localizações específicas no sistema de arquivos.
+
+## Arquivos de Configuração Específicos
+
+### `tsconfig.backend.json`
+
+Este arquivo estende o `tsconfig.json` principal e adiciona configurações específicas para o backend.
+```
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/backend",
+    "rootDir": "./src/backend"
+  },
+  "include": ["src/backend/**/*"]
+}
+```
+
+### `tsconfig.frontend.json`
+
+Este arquivo estende o `tsconfig.json` principal e adiciona configurações específicas para o frontend.
+
+```
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/frontend",
+    "rootDir": "./src/frontend"
+  },
+  "include": ["src/frontend/**/*"]
+}
+```
 
 ## Tecnologias Utilizadas
 
 - **TypeScript**: Um superset tipado de JavaScript que compila para JavaScript simples.
 - **ts-node-dev**: Ferramenta que reinicia automaticamente o servidor quando há mudanças no código TypeScript.
-- **ESLint**: Ferramenta para identificar e corrigir problemas no código JavaScript/TypeScript.
 - **Prettier**: Formatador de código que aplica um estilo consistente.
 - **Express**: Framework web para Node.js para criar servidores e APIs.
 
@@ -105,7 +150,7 @@ Este arquivo configura o compilador TypeScript.
 
 - **`npm run start`**: Use para rodar o projeto em produção, executando o código compilado.
 - **`npm run dev`**: Use durante o desenvolvimento para rodar o projeto com reinicialização automática.
-- **`npm run build`**: Use para compilar o código TypeScript para JavaScript.
-- **`npm run lint`**: Use para verificar se há problemas de lint no código.
-- **`npm run lint:fix`**: Use para corrigir automaticamente problemas de lint no código.
+- **`npm run build`**: Use para compilar o projeto.
+- **`npm run build-backend`**: Use para compilar os arquivos do backend.
+- **`npm run build-frontend`**: Use para compilar os arquivos do frontend.
 - **`npm run format`**: Use para formatar o código de acordo com as regras do Prettier.

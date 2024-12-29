@@ -1,12 +1,14 @@
 {
   "name": "divino-lanches",
   "version": "1.0.0",
-  "description": "",
-  "main": "prettier.config.js",
+  "description": "E-commerce site for Divino Lanches",
+  "main": "dist/backend/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "tsc",
+    "start": "node dist/backend/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
+    "build-backend": "tsc --project tsconfig.backend.json",
+    "build-frontend": "tsc --project tsconfig.frontend.json",
+    "build": "npm run build-backend && npm run build-frontend",
     "format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
   },
   "keywords": [],
