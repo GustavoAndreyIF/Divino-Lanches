@@ -9,7 +9,7 @@ const port = 3000;
 // Middleware para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, '../../dist/frontend')));
 
-app.use('/testes', router); // testes sobre rotas
+app.use('/', router); // testes sobre rotas
 
 app.get('/', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '../../dist/frontend/index.html'));

@@ -1,5 +1,7 @@
 import * as mysql from 'mysql'
-import 'dotenv/config'
+import dotenv from 'dotenv'
+import path from 'path'
+dotenv.config({path: path.resolve(__dirname, '.env')})
 
 const db = mysql.createConnection({
     host: process.env.HOSTNAME,
@@ -16,5 +18,8 @@ db.connect((err) => {
     }
     else {
         console.log('conectado ao banco...')
+        console.log()
     }
 })
+
+export default db;

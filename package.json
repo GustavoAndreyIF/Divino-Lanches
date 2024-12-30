@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
     "copy-html": "cp src/frontend/pages/index.html dist/frontend/pages/index.html",
     "copy-css": "cp src/frontend/styles/main.css dist/frontend/styles/main.css",
-    "copy-env": "cp .env dist/.env",
+    "copy-env": "cp src/backend/config/.env dist/backend/config/.env",
     "build-backend": "tsc --project tsconfig.backend.json",
     "build-frontend": "tsc --project tsconfig.frontend.json",
     "build": "npm run build-backend && npm run build-frontend && npm run copy-html && npm run copy-css && npm run copy-env",
