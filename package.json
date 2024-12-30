@@ -6,12 +6,11 @@
   "scripts": {
     "start": "node dist/backend/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
-    "copy-html": "cp src/frontend/pages/index.html dist/frontend/pages/index.html",
-    "copy-css": "cp src/frontend/styles/main.css dist/frontend/styles/main.css",
-    "copy-env": "cp src/backend/config/.env dist/backend/config/.env",
+    "copy-env": "copyfiles src/backend/config/.env dist/backend/config",
+    "copy-frontend": "rsync -av --exclude='scripts' src/frontend/ dist/frontend/",
     "build-backend": "tsc --project tsconfig.backend.json",
     "build-frontend": "tsc --project tsconfig.frontend.json",
-    "build": "npm run build-backend && npm run build-frontend && npm run copy-html && npm run copy-css && npm run copy-env",
+    "build": "npm run build-backend && npm run build-frontend && npm run copy-frontend && npm run copy-env",
     "format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
   },
   "keywords": [],
@@ -24,7 +23,8 @@
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "copyfiles": "^2.4.1"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
