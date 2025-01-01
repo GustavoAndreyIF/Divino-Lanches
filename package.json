@@ -7,7 +7,7 @@
     "start": "node dist/backend/index.js",
     "dev": "ts-node-dev --respawn --transpile-only src/backend/index.ts",
     "copy-env": "copyfiles src/backend/config/.env dist/backend/config",
-    "copy-frontend": "rsync -av --exclude='scripts' src/frontend/ dist/frontend/",
+    "copy-frontend": "cp -r src/frontend/* dist/frontend/ && find dist/frontend/ -name 'scripts' -type d -exec rm -rf {} +",
     "build-backend": "tsc --project tsconfig.backend.json",
     "build-frontend": "tsc --project tsconfig.frontend.json",
     "build": "npm run build-backend && npm run build-frontend && npm run copy-frontend && npm run copy-env",
