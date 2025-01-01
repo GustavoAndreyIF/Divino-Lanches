@@ -54,14 +54,6 @@
                         </li>
                     </ul>
                     <div class="d-flex flex-column flex-lg-row">
-                        <form class="d-flex mb-2 mb-lg-0">
-                            <input
-                                class="form-control me-2"
-                                type="search"
-                                placeholder="Buscar no site"
-                                aria-label="Search"
-                            />
-                        </form>
                         <form class="d-flex ms-lg-3">
                             <button class="btn btn-warning me-2" type="button">
                                 Entrar
@@ -78,26 +70,26 @@
                 data-bs-ride="carousel"
             >
                 <div class="carousel-indicators">
-                  <button
-                    type="button"
-                    data-bs-target="#carouselMain"
-                    data-bs-slide-to="0"
-                    class="active"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselMain"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselMain"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                  ></button>
+                    <button
+                        type="button"
+                        data-bs-target="#carouselMain"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                    ></button>
+                    <button
+                        type="button"
+                        data-bs-target="#carouselMain"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                    ></button>
+                    <button
+                        type="button"
+                        data-bs-target="#carouselMain"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                    ></button>
                 </div>
                 <div class="carousel-inner">
                     <div
@@ -115,7 +107,10 @@
                             alt="..."
                         />
                     </div>
-                    <div class="carousel-item text-center" data-interval="3000">
+                    <div
+                        class="carousel-item text-center"
+                        data-bs-interval="3000"
+                    >
                         <img
                             src="images/slidesPromo/slide02.png"
                             class="d-md-block img-fluid d-none"
@@ -167,7 +162,97 @@
             </div>
             <hr class="mt-3" />
         </header>
-        <maim> </maim>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                        <form
+                            class="justify-content-center justify-content-md-start mb-3 mb-md-0"
+                        >
+                            <div class="input-group input-group-sm">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Buscar mo site"
+                                    aria-label="Buscar no site"
+                                />
+                                <button
+                                    class="btn btn-warning"
+                                    type="button"
+                                    id="button-addon2"
+                                >
+                                    Buscar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div
+                            class="d-flex flex-row-reverse justify-content-center justify-content-md-start"
+                        >
+                            <form class="ml-3 d-inline-block">
+                                <select
+                                    class="form-select form-select-sm"
+                                    aria-label="Ordenar por"
+                                >
+                                    <option value="0">Ordenar por nome</option>
+                                    <option value="1">
+                                        Ordernar pelo menor preço
+                                    </option>
+                                    <option value="2">
+                                        Ordernar pelo maior preço
+                                    </option>
+                                </select>
+                            </form>
+                            <nav class="d-inline-block">
+                                <ul class="pagination pagination-sm my-0">
+                                    <li class="page-item disabled">
+                                        <button class="page-link">1</button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button class="page-link">2</button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button class="page-link">3</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-3" />
+                <div class="row">
+                    <div
+                        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch"
+                    >
+                        <div class="card text-center bg-light">
+                            <img
+                                src="images/slidesPromo/slide01.png"
+                                class="card-img-top"
+                            />
+                            <div class="card-header">
+                                <h5 class="card-title">Nome do Produto</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Descrição do Produto</p>
+                                <h5 class="card-title">Preço</h5>
+                            </div>
+                            <div class="card-footer">
+                                <form class="d-block">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-warning"
+                                    >
+                                        Adicionar ao Carrinho
+                                    </button>
+                                </form>
+                                <small class="text-warning">Estoque</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
         <footer class="border-top fixed-bottom text-muted bg-warning">
             <div class="container">
                 <div class="row py-3">
