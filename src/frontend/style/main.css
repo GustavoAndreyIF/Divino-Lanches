@@ -1,0 +1,25 @@
+body {
+  min-width: 372px;
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+p.truncate-3l {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-header {
+  height: 60px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
