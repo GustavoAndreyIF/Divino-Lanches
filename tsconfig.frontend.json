@@ -1,8 +1,11 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/frontend",
-    "rootDir": "./src/frontend"
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./dist/frontend"
   },
-  "include": ["src/frontend/**/*"]
+  "include": ["src/frontend/**/*.ts"],
+  "exclude": ["node_modules"]
 }
