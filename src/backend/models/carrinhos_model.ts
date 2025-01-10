@@ -2,7 +2,7 @@ import { queryCallback } from "mysql";
 import db from "../config/db.js";
 class CarrinhoModel {
     constructor(){}
-    get_Carrinho_cliente(id_cliente: number, callback:queryCallback) {
+    get_Carrinho_cliente(id_cliente: number, callback:queryCallback) { //pega um produto de um carrinho
         const query = `SELECT * FROM tb_carrinho_produtos WHERE id_cliente = ${id_cliente}`;
         db.query(query, callback);
     };

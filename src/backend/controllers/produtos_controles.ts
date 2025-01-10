@@ -6,13 +6,13 @@ class ProdutoControles extends ProdutosModel {
   constructor() {
     super();
   }
-  listarTodosProdutos(req: Request, res: Response) {
+  async listarTodosProdutos(req: Request, res: Response) {
     this.getAll((err: MysqlError | null, Produtos: any) => {
       if (err) return res.send(err);
       res.json(Produtos);
     });
   }
-  listarProdutosCategoria(req: Request, res: Response) {
+  async listarProdutosCategoria(req: Request, res: Response) {
     let categoria: string = req.params.categoria;
     this.getAllFiltered("categoria", categoria, (err: MysqlError | null, Produtos: any) => {
         if (err) return res.send(err);
@@ -31,6 +31,7 @@ class ProdutoControles extends ProdutosModel {
         return;
       });
     }) // precisa ser uma promessa, por que? Porque se não essa merda de estoque_qt fica undefined durante a requisição
+
     estoque_qt = estoque_qt + quantia;
 
     this.alterLinha(product_id, 'qt_Estoque', estoque_qt, 'id_Product', (err: MysqlError | null, Resultado: any) => {
