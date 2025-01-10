@@ -1,19 +1,16 @@
-// filepath: src/server.ts
-
+// filepath: /home/gustavoady/Documentos/cloneRepoGithub/Divino-Lanches/src/backend/index.ts
 import express from "express";
 import path from "path";
 
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-// Servir arquivos estáticos da pasta dist
-app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../../dist/frontend")));
 
-// Rota para servir o index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
+  res.sendFile(path.join(__dirname, "../../dist/frontend/index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
