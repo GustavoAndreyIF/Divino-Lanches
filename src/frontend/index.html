@@ -1,360 +1,343 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <title>Divino Lanches :: Pagina Principal</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link href="./assets/css/main.css" rel="stylesheet" />
-  </head>
+	<head>
+		<title>Divino Lanches :: Pagina Principal</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+			rel="stylesheet"
+		/>
+		<link href="./assets/css/main.css" rel="stylesheet" />
+	</head>
 
-  <body>
-    <div class="d-flex flex-column wrapper">
-      <nav
-        class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-3"
-      >
-        <!-- Container da barra de navegação -->
-        <div class="container">
-          <div class="d-flex align-items-center">
-            <!-- Botão para colapsar a barra de navegação em telas menores -->
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarTogglerDemo03"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Logo e nome da marca -->
-            <a class="navbar-brand ms-2" href="index.html">
-              <img
-                src="assets/images/produtosImg/produto03.png"
-                width="24"
-                height="24"
-                class="d-inline-block align-text-top"
-              />
-              Divino Lanches
-            </a>
-          </div>
-          <!-- Itens da barra de navegação -->
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
-              <!-- Link para a página inicial -->
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Página Inicial</a>
-              </li>
-              <!-- Link para a página Quem Somos -->
-              <li class="nav-item">
-                <a class="nav-link" href="pages/quemsomos.html">Quem Somos</a>
-              </li>
-            </ul>
-            <div class="align-self-end">
-              <ul class="navbar-nav">
-                <!-- Botão para entrar(login) -->
-                <li class="nav-item" id="btnLogin">
-                  <a href="pages/login.html" class="btn btn-warning">Entrar</a>
-                </li>
-                <!-- Ícone do carrinho com badge de quantidade de produtos -->
-                <li class="nav-item">
-                  <span
-                    id="badgeCarrinho"
-                    class="badge rounded-pill bg-light text-warning position-absolute ms-4 mt-0"
-                    title="5 produto(s) no carrinho"
-                    ><small>5</small></span
-                  >
-                  <a href="pages/carrinho.html" class="nav-link text-dark">
-                    <i class="bi-cart" style="font-size: 24px; line-height: 24px"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <header class="container">
-        <div
-          id="carouselMain"
-          class="carousel slide carousel-dark"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselMain"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselMain"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselMain"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active text-center" data-bs-interval="3000">
-              <img
-                src="assets/images/slidesPromo/slide01.png"
-                class="d-none d-md-block w-100"
-                alt="..."
-              />
-              <img
-                src="assets/images/slidesPromo/slide01small.png"
-                class="d-block d-md-none w-100"
-                alt="..."
-              />
-            </div>
-            <div class="carousel-item text-center" data-bs-interval="3000">
-              <img
-                src="assets/images/slidesPromo/slide02.png"
-                class="d-none d-md-block w-100"
-                alt="..."
-              />
-              <img
-                src="assets/images/slidesPromo/slide02small.png"
-                class="d-block d-md-none w-100"
-                alt="..."
-              />
-            </div>
-            <div class="carousel-item text-center" data-interval="3000">
-              <img
-                src="assets/images/slidesPromo/slide03.png"
-                class="d-none d-md-block w-100"
-                alt="..."
-              />
-              <img
-                src="assets/images/slidesPromo/slide03small.png"
-                class="d-block d-md-none w-100"
-                alt="..."
-              />
-            </div>
-          </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselMain"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselMain"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-            <span class="visually-hidden">Próximo</span>
-          </button>
-        </div>
-        <hr class="mt-3" />
-      </header>
-      <main class="flex-fill">
-        <div class="container">
-          <div class="row">
-            <!-- Barra de pesquisa -->
-            <div class="col-12 col-md-5">
-              <form class="justify-content-center justify-content-md-start mb-3 mb-md-0">
-                <div class="input-group input-group-sm">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Buscar mo site"
-                    id="txtBusca"
-                  />
-                  <button class="btn btn-warning" type="button" onclick="">Buscar</button>
-                </div>
-              </form>
-            </div>
-            <!-- Select de ordenação e paginação -->
-            <div class="col-12 col-md-7">
-              <div
-                class="d-flex flex-row-reverse justify-content-center justify-content-md-start"
-              >
-                <!-- Select de ordenação -->
-                <form class="ml-3 d-inline-block">
-                  <select class="form-select form-select-sm" id="selectOrdenar">
-                    <option value="0">Ordenar pelo nome</option>
-                    <option value="1">Ordenar pelo menor preço</option>
-                    <option value="2">Ordenar pelo maior preço</option>
-                  </select>
-                </form>
-                <!-- Paginação -->
-                <nav class="d-inline-block me-3">
-                  <ul class="pagination pagination-sm my-0" id="ulPaginacao">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <hr class="mt-3" />
-          <!-- Div com os produtos -->
-          <div class="row g-3">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" id="divProdutos">
-              <div class="card text-center bg-light" id="cardProduto">
-                <img src="assets/images/produtosImg/produto01.png" class="card-img-top" />
-                <div class="card-header">
-                  <h5 class="card-title">Nome do Produto</h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text truncate-3l">
-                    Descrição do Produto: Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies
-                    turpis. Nulla facilisi. Nullam nec nunc nec nunc. Nullam nec nunc nec
-                    nunc. Nullam nec
-                  </p>
-                  <h5 class="card-title">Preço</h5>
-                </div>
-                <div class="card-footer">
-                  <form class="d-block" id="btnAdicionarCarrinho1">
-                    <button type="button" class="btn btn-warning" onclick="">
-                      Adicionar ao Carrinho
-                    </button>
-                  </form>
-                  <small class="text-success">Disponivel</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-              <div class="card text-center bg-light">
-                <img src="assets/images/produtosImg/produto02.png" class="card-img-top" />
-                <div class="card-header">
-                  <h5 class="card-title">Bolo Whatsapp</h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text truncate-3l">
-                    Descrição do Produto: Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies
-                    turpis. Nulla facilisi. Nullam nec nunc nec nunc. Nullam nec nunc nec
-                    nunc. Nullam nec
-                  </p>
-                  <h5 class="card-title">Preço</h5>
-                </div>
-                <div class="card-footer">
-                  <form class="d-block" id="btnAdicionarCarrinho2">
-                    <button type="button" class="btn btn-light" onclick="" disabled>
-                      Produto Indisponível
-                    </button>
-                  </form>
-                  <small class="text-danger"><b>Esgotado</b></small>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-              <div class="card text-center bg-light" id="cardProduto">
-                <img src="assets/images/produtosImg/produto03.png" class="card-img-top" />
-                <div class="card-header">
-                  <h5 class="card-title">Nome do Produto</h5>
-                </div>
-                <div class="card-body">
-                  <p class="card-text truncate-3l">
-                    Descrição do Produto: Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies
-                    turpis. Nulla facilisi. Nullam nec nunc nec nunc. Nullam nec nunc nec
-                    nunc. Nullam nec
-                  </p>
-                  <h5 class="card-title">R$12,50</h5>
-                </div>
-                <div class="card-footer">
-                  <form class="d-block" id="btnAdicionarCarrinho1">
-                    <button type="button" class="btn btn-danger" onclick="">
-                      Remover do Carrinho
-                    </button>
-                  </form>
-                  <small class="text-success">Disponivel</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr class="mt-3" />
-          <!-- Paginação 2 -->
-          <div class="row pb-4">
-            <div class="col-12">
-              <div
-                class="d-flex flex-row-reverse justify-content-center justify-content-md-start"
-              >
-                <form class="ml-3 d-inline-block">
-                  <select class="form-select form-select-sm" id="selectOrdenar2">
-                    <option value="0">Ordenar por nome</option>
-                    <option value="1">Ordernar pelo menor preço</option>
-                    <option value="2">Ordernar pelo maior preço</option>
-                  </select>
-                </form>
-                <nav class="d-inline-block">
-                  <ul class="pagination pagination-sm my-0" id="ulPaginacao">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+	<body>
+		<div class="d-flex flex-column wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm mb-3"
+			>
+				<!-- Container da barra de navegação -->
+				<div class="container">
+					<div class="d-flex align-items-center">
+						<!-- Botão para colapsar a barra de navegação em telas menores -->
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarTogglerDemo03"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<!-- Logo e nome da marca -->
+						<a class="navbar-brand ms-2" href="index.html">
+							<img
+								src="assets/images/produtosImg/produto03.png"
+								width="24"
+								height="24"
+								class="d-inline-block align-text-top"
+							/>
+							Divino Lanches
+						</a>
+					</div>
+					<!-- Itens da barra de navegação -->
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
+							<!-- Link para a página inicial -->
+							<li class="nav-item">
+								<a class="nav-link" href="index.html">Página Inicial</a>
+							</li>
+							<!-- Link para a página Quem Somos -->
+							<li class="nav-item">
+								<a class="nav-link" href="pages/quemsomos.html"
+									>Quem Somos</a
+								>
+							</li>
+						</ul>
+						<div class="align-self-end">
+							<ul class="navbar-nav">
+								<!-- Botão para entrar(login) -->
+								<li class="nav-item" id="btnLogin">
+									<a href="pages/login.html" class="btn btn-warning"
+										>Entrar</a
+									>
+								</li>
+								<!-- Ícone do carrinho com badge de quantidade de produtos -->
+								<li class="nav-item">
+									<span
+										id="badgeCarrinho"
+										class="badge rounded-pill bg-light text-warning position-absolute ms-4 mt-0"
+										title="5 produto(s) no carrinho"
+										><small>5</small></span
+									>
+									<a
+										href="pages/carrinho.html"
+										class="nav-link text-dark"
+									>
+										<i
+											class="bi-cart"
+											style="font-size: 24px; line-height: 24px"
+										></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<header class="container">
+				<div
+					id="carouselMain"
+					class="carousel slide carousel-dark"
+					data-bs-ride="carousel"
+				>
+					<div class="carousel-indicators">
+						<button
+							type="button"
+							data-bs-target="#carouselMain"
+							data-bs-slide-to="0"
+							class="active"
+							aria-current="true"
+							aria-label="Slide 1"
+						></button>
+						<button
+							type="button"
+							data-bs-target="#carouselMain"
+							data-bs-slide-to="1"
+							aria-label="Slide 2"
+						></button>
+						<button
+							type="button"
+							data-bs-target="#carouselMain"
+							data-bs-slide-to="2"
+							aria-label="Slide 3"
+						></button>
+					</div>
+					<div class="carousel-inner">
+						<div
+							class="carousel-item active text-center"
+							data-bs-interval="3000"
+						>
+							<img
+								src="assets/images/slidesPromo/slide01.png"
+								class="d-none d-md-block w-100"
+								alt="..."
+							/>
+							<img
+								src="assets/images/slidesPromo/slide01small.png"
+								class="d-block d-md-none w-100"
+								alt="..."
+							/>
+						</div>
+						<div class="carousel-item text-center" data-bs-interval="3000">
+							<img
+								src="assets/images/slidesPromo/slide02.png"
+								class="d-none d-md-block w-100"
+								alt="..."
+							/>
+							<img
+								src="assets/images/slidesPromo/slide02small.png"
+								class="d-block d-md-none w-100"
+								alt="..."
+							/>
+						</div>
+						<div class="carousel-item text-center" data-interval="3000">
+							<img
+								src="assets/images/slidesPromo/slide03.png"
+								class="d-none d-md-block w-100"
+								alt="..."
+							/>
+							<img
+								src="assets/images/slidesPromo/slide03small.png"
+								class="d-block d-md-none w-100"
+								alt="..."
+							/>
+						</div>
+					</div>
+					<button
+						class="carousel-control-prev"
+						type="button"
+						data-bs-target="#carouselMain"
+						data-bs-slide="prev"
+					>
+						<span class="carousel-control-prev-icon"></span>
+						<span class="visually-hidden">Anterior</span>
+					</button>
+					<button
+						class="carousel-control-next"
+						type="button"
+						data-bs-target="#carouselMain"
+						data-bs-slide="next"
+					>
+						<span class="carousel-control-next-icon"></span>
+						<span class="visually-hidden">Próximo</span>
+					</button>
+				</div>
+				<hr class="mt-3" />
+			</header>
+			<main class="flex-fill">
+				<div class="container">
+					<div class="row">
+						<!-- Barra de pesquisa -->
+						<div class="col-12 col-md-5">
+							<form
+								class="justify-content-center justify-content-md-start mb-3 mb-md-0"
+							>
+								<div class="input-group input-group-sm">
+									<input
+										type="text"
+										class="form-control"
+										placeholder="Buscar mo site"
+										id="txtBusca"
+									/>
+									<button
+										class="btn btn-warning"
+										type="button"
+										onclick=""
+									>
+										Buscar
+									</button>
+								</div>
+							</form>
+						</div>
+						<!-- Select de ordenação e paginação -->
+						<div class="col-12 col-md-7">
+							<div
+								class="d-flex flex-row-reverse justify-content-center justify-content-md-start"
+							>
+								<!-- Select de ordenação -->
+								<form class="ml-3 d-inline-block">
+									<select
+										class="form-select form-select-sm"
+										id="selectOrdenar"
+									>
+										<option value="0">Ordenar pelo nome</option>
+										<option value="1">
+											Ordenar pelo menor preço
+										</option>
+										<option value="2">
+											Ordenar pelo maior preço
+										</option>
+									</select>
+								</form>
+								<!-- Paginação -->
+								<nav class="d-inline-block me-3">
+									<ul
+										class="pagination pagination-sm my-0"
+										id="ulPaginacao"
+									>
+										<li class="page-item disabled">
+											<a class="page-link" href="#">1</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#">2</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#">3</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<hr class="mt-3" />
+					<!-- Div com os produtos -->
+					<div class="row g-3" id="divProdutos"></div>
+					<hr class="mt-3" />
+					<!-- Paginação 2 -->
+					<div class="row pb-4">
+						<div class="col-12">
+							<div
+								class="d-flex flex-row-reverse justify-content-center justify-content-md-start"
+							>
+								<form class="ml-3 d-inline-block">
+									<select
+										class="form-select form-select-sm"
+										id="selectOrdenar2"
+									>
+										<option value="0">Ordenar por nome</option>
+										<option value="1">
+											Ordernar pelo menor preço
+										</option>
+										<option value="2">
+											Ordernar pelo maior preço
+										</option>
+									</select>
+								</form>
+								<nav class="d-inline-block">
+									<ul
+										class="pagination pagination-sm my-0"
+										id="ulPaginacao"
+									>
+										<li class="page-item disabled">
+											<a class="page-link" href="#">1</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#">2</a>
+										</li>
+										<li class="page-item">
+											<a class="page-link" href="#">3</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
 
-      <footer class="border-top text-muted bg-warning">
-        <div class="container">
-          <div class="row py-3">
-            <div class="col-12 col-md-4 text-center">
-              &copy; 2025 - Divino Lanches LTDA<br />
-              Rua Tchurusbango Tudusbago, 002, info2m <br />
-              CPNJ 99.999.999/999-99
-            </div>
-            <div class="col-12 col-md-4 text-center">
-              <a href="pages/privacidade.html" class="text-decoration-none text-dark">
-                Política de Privacidade </a
-              ><br />
-              <a href="pages/termos.html" class="text-decoration-none text-dark">
-                Termos de Uso </a
-              ><br />
-              <a href="pages/quemsomos.html" class="text-decoration-none text-dark">
-                Quem Somos
-              </a>
-            </div>
-            <div class="col-12 col-md-4 text-center">
-              <a href="pages/contato.html" class="text-decoration-none text-dark">
-                Contato pelo Site </a
-              ><br />
-              E-mail:
-              <a href="#" class="text-decoration-none text-dark">
-                divinolanches@suporte.com </a
-              ><br />
-              Telefone:
-              <a href="#" class="text-decoration-none text-dark"> (99) 9999-00009 </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./main.js"></script>
-  </body>
+			<footer class="border-top text-muted bg-warning">
+				<div class="container">
+					<div class="row py-3">
+						<div class="col-12 col-md-4 text-center">
+							&copy; 2025 - Divino Lanches LTDA<br />
+							Rua Tchurusbango Tudusbago, 002, info2m <br />
+							CPNJ 99.999.999/999-99
+						</div>
+						<div class="col-12 col-md-4 text-center">
+							<a
+								href="pages/privacidade.html"
+								class="text-decoration-none text-dark"
+							>
+								Política de Privacidade </a
+							><br />
+							<a
+								href="pages/termos.html"
+								class="text-decoration-none text-dark"
+							>
+								Termos de Uso </a
+							><br />
+							<a
+								href="pages/quemsomos.html"
+								class="text-decoration-none text-dark"
+							>
+								Quem Somos
+							</a>
+						</div>
+						<div class="col-12 col-md-4 text-center">
+							<a
+								href="pages/contato.html"
+								class="text-decoration-none text-dark"
+							>
+								Contato pelo Site </a
+							><br />
+							E-mail:
+							<a href="#" class="text-decoration-none text-dark">
+								divinolanches@suporte.com </a
+							><br />
+							Telefone:
+							<a href="#" class="text-decoration-none text-dark">
+								(99) 9999-00009
+							</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="./main.js" type="module"></script>
+	</body>
 </html>
