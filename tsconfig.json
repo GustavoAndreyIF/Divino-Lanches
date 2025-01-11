@@ -13,7 +13,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/frontend/scripts/main.js"  ],
   "exclude": [
     "node_modules",
     "dist"
