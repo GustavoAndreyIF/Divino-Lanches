@@ -1,8 +1,12 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/backend",
-    "rootDir": "./src/backend"
+    "moduleResolution": "node",
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./dist/backend"
   },
-  "include": ["src/backend/**/*"]
+  "include": ["src/backend/**/*.ts"],
+  "exclude": ["node_modules"]
 }
