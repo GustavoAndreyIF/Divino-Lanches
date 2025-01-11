@@ -16,3 +16,5 @@ class ClienteModel{
         db.query(query,callback);
     }
 }
+
+export default ClienteModel
