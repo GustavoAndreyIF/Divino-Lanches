@@ -14,7 +14,7 @@ class ProdutosModel {
     let query = `SELECT * FROM tb_products WHERE ${keyCollumn} = '${filter};'`;
     if (typeof filter === "number") {
       query = `SELECT * FROM tb_products WHERE ${keyCollumn} = ${filter};`;
-    } // outra gambiarra, por algum motivo misterioso a porra do parametro de values do query nn funciona, a solução é colocar e testar estes casos de string templates.
+    } 
     db.query(query, callback);
   }
   getCell(

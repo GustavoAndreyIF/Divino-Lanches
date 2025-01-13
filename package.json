@@ -5,11 +5,11 @@
 	"main": "dist/backend/index.js",
 	"scripts": {
 		"start": "node dist/backend/index.js",
-		"copy-env": "cpx src/backend/config/.env dist/backend/config",
-		"copy-frontend": "cpx 'src/frontend/**/*' dist/frontend/ && find dist/frontend/ -name 'scripts' -type d -exec rm -rf {} +",
+		"copy-env-windows": "xcopy src\\backend\\config\\.env dist\\backend\\config\\ /I",
+		"copy-frontend-windows": "xcopy src\\frontend\\* dist\\frontend\\ /E /I",
 		"build-backend": "tsc --project tsconfig.backend.json",
 		"build-frontend": "tsc --project tsconfig.frontend.json",
-		"build": "npm run build-backend && npm run build-frontend && npm run copy-frontend && npm run copy-env",
+		"build-windows": "npm run build-backend && npm run build-frontend && npm run copy-frontend-windows && npm run copy-env-windows",
 		"format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
 	},
 	"keywords": [],
