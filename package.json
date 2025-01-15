@@ -10,7 +10,10 @@
 		"build-backend": "tsc --project tsconfig.backend.json",
 		"build-frontend": "tsc --project tsconfig.frontend.json",
 		"build-windows": "npm run build-backend && npm run build-frontend && npm run copy-frontend-windows && npm run copy-env-windows",
-		"format": "prettier --write \"src/**/*.{ts,js,json,css,md}\""
+		"format": "prettier --write \"src/**/*.{ts,js,json,css,md}\"",
+        	"copy-env-linux": "cpx \"src/backend/config/.env\" \"dist/backend/config\"",
+		"copy-frontend-linux": "cpx 'src/frontend/**/*' dist/frontend/ && find dist/frontend/ -name 'scripts' -type d -exec rm -rf {} +",
+		"build-linux": "npm run build-backend && npm run build-frontend && npm run copy-frontend-linux && npm run copy-env-linux"
 	},
 	"keywords": [],
 	"author": "",
