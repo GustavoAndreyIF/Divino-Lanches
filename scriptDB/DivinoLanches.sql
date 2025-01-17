@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `Tb_Products` (
+CREATE TABLE IF NOT EXISTS `tb_products` (
 	`id_Product` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`nm_Product` varchar(255) NOT NULL UNIQUE,
 	`price_Product` float NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS `Tb_Pedidos` (
 
 ALTER TABLE `Tb_Carrinho_Produtos` ADD CONSTRAINT `Tb_Carrinho_Produtos_fk1` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes`(`id_cliente`);
 
-ALTER TABLE `Tb_Carrinho_Produtos` ADD CONSTRAINT `Tb_Carrinho_Produtos_fk2` FOREIGN KEY (`id_Product`) REFERENCES `Tb_Products`(`id_Product`);
+ALTER TABLE `Tb_Carrinho_Produtos` ADD CONSTRAINT `Tb_Carrinho_Produtos_fk2` FOREIGN KEY (`id_Product`) REFERENCES `tb_products`(`id_Product`);
 ALTER TABLE `Tb_Pedidos` ADD CONSTRAINT `Tb_Pedidos_fk2` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes`(`id_cliente`);
 
-ALTER TABLE `Tb_Pedidos` ADD CONSTRAINT `Tb_Pedidos_fk3` FOREIGN KEY (`id_Produto`) REFERENCES `Tb_Products`(`id_Product`);
+ALTER TABLE `Tb_Pedidos` ADD CONSTRAINT `Tb_Pedidos_fk3` FOREIGN KEY (`id_Produto`) REFERENCES `tb_products`(`id_Product`);
 
 INSERT INTO tb_products (nm_Product, price_Product, qt_Estoque, descricao, categoria) VALUES
     ('Product A', 10.50, 100, 'Description for Product A', 'Category 1'),
