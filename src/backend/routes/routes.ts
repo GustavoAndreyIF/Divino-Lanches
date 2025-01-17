@@ -38,7 +38,7 @@ router.delete("/DeletarProdutoCarrinho/:id", (req, res) =>
 //registro
 
 router.post('/Registrar', async (req, res) =>
-  mainCliente.verificar_email(req,res),
+  mainCliente.criar_cliente(req,res),
 );
 
 //login
