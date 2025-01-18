@@ -8,4 +8,7 @@ export class CarrinhoService {
 	static removerDoCarrinho(produto: Produto): void {
 		console.log(`Produto ${produto._nome} removido do carrinho.`);
 	}
+	static getItemCount(): number {
+		return 5;
+	}
 }
