@@ -29,7 +29,4 @@ export class ProdutoService {
       produto.categoria
     );
   }
-	async alterarQuantidadeProduto(id: number, quantidade: number): Promise<any> {
-		return this._apiService.put(`Produtos/${id}`, { quantidade });
-	}
 }

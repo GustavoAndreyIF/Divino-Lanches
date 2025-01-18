@@ -11,13 +11,13 @@ export class ApiService {
 	}
 
 	// Método assíncrono post que recebe uma URL e dados como parâmetros e retorna uma Promise de qualquer tipo.
-	async post(url: string, data: any): Promise<any> {
+	async post(url: string, data: URLSearchParams): Promise<any> {
 		// Faz uma requisição HTTP POST para a URL combinada _baseUrl e url.
 		const response = await fetch(`${this._baseUrl}/${url}`, {
 			method: "POST", // Define o método HTTP como POST.
-			body: JSON.stringify(data), // Converte os dados para uma string JSON e os inclui no corpo da requisição.
+			body: data.toString(), // Converte os dados para uma string JSON e os inclui no corpo da requisição.
 			headers: {
-				"Content-Type": "application/json", // Define o cabeçalho Content-Type como application/json.
+				"Content-Type": "application/x-www-form-urlencoded", // Define o cabeçalho Content-Type como application/json.
 			},
 		});
 		// Converte a resposta da requisição para JSON e a retorna.
@@ -25,16 +25,23 @@ export class ApiService {
 	}
 
 	// Método assíncrono put que recebe uma URL e dados como parâmetros e retorna uma Promise de qualquer tipo.
-	async put(url: string, data: any): Promise<any> {
+	async put(url: string, data: URLSearchParams): Promise<any> {
 		// Faz uma requisição HTTP PUT para a URL combinada _baseUrl e url.
 		const response = await fetch(`${this._baseUrl}/${url}`, {
 			method: "PUT", // Define o método HTTP como PUT.
-			body: JSON.stringify(data), // Converte os dados para uma string JSON e os inclui no corpo da requisição.
+			body: data.toString(), // Converte os dados para uma string JSON e os inclui no corpo da requisição.
 			headers: {
-				"Content-Type": "application/json", // Define o cabeçalho Content-Type como application/json.
+				"Content-Type": "application/x-www-form-urlencoded", // Define o cabeçalho Content-Type como application/json.
 			},
 		});
 		// Converte a resposta da requisição para JSON e a retorna.
 		return response.json();
 	}
+
+  async delete(url: string) {
+    const response = await fetch(`${this._baseUrl}/${url}`, {
+      method: "DELETE"
+    });
+    return response.json();
+  }
 }

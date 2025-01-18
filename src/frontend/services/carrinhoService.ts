@@ -1,46 +1,53 @@
 import { Produto } from "../models/produto.js";
+import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
 import { ApiService } from "./apiService.js";
 
 export class CarrinhoService {
-    private static readonly STORAGE_KEY = "cartItems";
-    private static apiService = new ApiService("http://localhost:3000");
+    constructor (private _apiService: ApiService) {}
 
-    static getProdutos(): Produto[] {
-        const storedItems = localStorage.getItem(this.STORAGE_KEY);
-        return storedItems ? JSON.parse(storedItems) : [];
-    }
+	async getCarrinhoCliente(id_cliente: number) {
+		let ProdutosCarrinhoGET = await this._apiService.get(`ProdutosCarrinho/${id_cliente}`);
+		let ProdutosCarrinhoList: ProdutoCarrinho[] = [];
 
-    static adicionarAoCarrinho(produto: Produto): void {
-        const items = this.getProdutos();
-        items.push(produto);
-        this.saveItems(items);
-        this.syncCarrinho();
-        console.log(`Produto ${produto._nome} adicionado ao carrinho.`);
-    }
+		ProdutosCarrinhoGET.array.forEach((elemento:any) => {
+			let Produto: ProdutoCarrinho = new ProdutoCarrinho(elemento.id_carrinho_produto, elemento.id_cliente, elemento.id_Product, elemento.Qt_Product_Carrinho);
+			ProdutosCarrinhoList.push(Produto)
+		});
 
-    static removerDoCarrinho(produto: Produto): void {
-        let items = this.getProdutos();
-        items = items.filter(item => item._id !== produto._id);
-        this.saveItems(items);
-        this.syncCarrinho();
-        console.log(`Produto ${produto._nome} removido do carrinho.`);
-    }
+		return ProdutosCarrinhoList;
+	};
 
-    static getItemCount(): number {
-        return this.getProdutos().length;
-    }
+	async alterarProdutoQuantia(Qt_Product_Carrinho: number, id_crr_prod:number) {
+		let Qt_Product_CarrinhoSTR:string = Qt_Product_Carrinho.toString();
+		let id_crr_prodSTR:string = id_crr_prod.toString();
+		let reqBody = new URLSearchParams(
+			{
+				id_carrinho_produto: id_crr_prodSTR,
+				Qt_Product_Carrinho: Qt_Product_CarrinhoSTR
+			}
+		)
+		await this._apiService.put('ProdutoCarrinhoAltQt/', reqBody)
+		return;
+	}
 
-    private static saveItems(items: Produto[]): void {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
-    }
+	async adicionarCarrinhoProduto(id_cliente: number, id_produto: number, Qt_Product_Carrinho: number) {
+		let id_clienteSTR: string = id_cliente.toString();
+		let id_produtoSTR: string = id_produto.toString();
+		let Qt_Product_CarrinhoSTR: string = Qt_Product_Carrinho.toString();
 
-    private static async syncCarrinho(): Promise<void> {
-        const items = this.getProdutos();
-        try {
-            await this.apiService.post("carrinho/sync", { produtos: items });
-            console.log("Carrinho sincronizado com sucesso.");
-        } catch (error) {
-            console.error("Erro ao sincronizar o carrinho:", error);
-        }
-    }
+		let reqBody = new URLSearchParams(
+			{
+				id_cliente: id_clienteSTR,
+				id_produto: id_produtoSTR,
+				Qt_Product_Carrinho: Qt_Product_CarrinhoSTR
+			}
+		)
+		await this._apiService.post('CriarProdutoCarrinho/', reqBody);
+		return;
+	}
+
+	async DeletarProdutoCarrinho(id_carrinho_produto: number) {
+		await this._apiService.delete(`DeletarProdutoCarrinho/${id_carrinho_produto}`);
+		return;
+	}
 }
