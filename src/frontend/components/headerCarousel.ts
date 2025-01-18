@@ -1,6 +1,15 @@
+/**
+ * Esta classe HeaderCarousel é responsável por renderizar um carrossel de cabeçalho na interface do usuário.
+ *
+ * @class HeaderCarousel
+ */
 export class HeaderCarousel {
-    render(): string {
-        return `
+	/**
+	 * Renderiza o carrossel de cabeçalho.
+	 * @returns Uma string contendo o HTML do carrossel de cabeçalho.
+	 */
+	render(): string {
+		return `
             <header class="container">
                 <div
                     id="carouselMain"
@@ -92,5 +101,5 @@ export class HeaderCarousel {
                 <hr class="mt-3" />
             </header>
         `;
-    }
+	}
 }

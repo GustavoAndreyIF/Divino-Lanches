@@ -1,11 +1,21 @@
 import { Produto } from "../models/produto.js";
 import { CarrinhoService } from "../services/carrinhoService.js";
 
+/**
+ * Esta classe representa um produto no carrinho de compras e é responsável por renderizar o produto na interface do usuário.
+ *
+ * @class CarrinhoProduto
+ * @param produto - O objeto Produto que será renderizado.
+ */
 export class CarrinhoProduto {
-    constructor(private produto: Produto) {}
+	constructor(private produto: Produto) {}
 
-    render(): string {
-        return `
+	/**
+	 * Renderiza o produto no carrinho de compras.
+	 * @returns Uma string contendo o HTML do produto no carrinho.
+	 */
+	render(): string {
+		return `
             <li class="list-group-item py-3">
                 <div class="row g-3">
                     <div class="col-4 col-md-3 col-lg-2">
@@ -29,5 +39,5 @@ export class CarrinhoProduto {
                 </div>
             </li>
         `;
-    }
+	}
 }

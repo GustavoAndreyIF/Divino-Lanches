@@ -1,3 +1,8 @@
+/**
+ * Esta classe fornece serviços de autenticação, incluindo login e registro de usuários.
+ *
+ * @class AutenService
+ */
 export class AutenService {
   // Construtor da classe que inicializa a propriedade 'loggedIn' com o valor padrão 'false'
   constructor(private loggedIn = false) {}

@@ -1,5 +1,15 @@
+/**
+ * Esta classe Footer é responsável por renderizar o rodapé da interface do usuário.
+ *
+ * @class Footer
+ */
 export class Footer {
+	/**
+	 * Renderiza o rodapé da interface do usuário.
+	 * @returns Uma string contendo o HTML do rodapé.
+	 */
 	render(): string {
+		// Retorna o HTML do rodapé, incluindo informações de contato e links de navegação
 		return `
             <footer class="border-top text-muted bg-warning">
                 <div class="container">
