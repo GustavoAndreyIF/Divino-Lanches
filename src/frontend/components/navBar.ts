@@ -9,7 +9,7 @@ export class Navbar {
           const itemCount = CarrinhoService.getItemCount();
           return `
       <li class="nav-item">
-        <span id="badgeCarrinho" class="badge rounded-pill bg-light text-warning position-absolute ms-4 mt-0" title="${itemCount} produto(s) no carrinho"><small>${itemCount}</small></span>
+        <span id="badgeCarrinho" class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0" title="${itemCount} produto(s) no carrinho"><small>${itemCount}</small></span>
         <a href="#" id="linkCarrinho" class="nav-link text-dark">
           <i class="bi-cart" style="font-size: 24px; line-height: 24px"></i>
         </a>

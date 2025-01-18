@@ -8,7 +8,7 @@ export class DomHeaderFooter {
 		private header: Header = new Header(autenService),
 		private footer: Footer = new Footer()
 	) {
-		this.autenService.setLoggedIn(false); // Altere para true ou false para simular o estado de login
+		this.autenService.setLoggedIn(true); // Altere para true ou false para simular o estado de login
 	}
 
 	render(): void {
