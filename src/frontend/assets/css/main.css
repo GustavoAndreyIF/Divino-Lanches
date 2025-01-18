@@ -6,6 +6,13 @@ body {
   min-height: 100vh;
 }
 
+
+@media screen and (max-width: 469px) {
+  .mt-xs-3 {
+      margin-top: 1rem;
+  }
+}
+
 p.truncate-3l {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -14,6 +21,7 @@ p.truncate-3l {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .card-header {
   height: 60px;
   display: -webkit-box;
@@ -22,4 +30,17 @@ p.truncate-3l {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.flex-even {
+  flex: 1;
+  min-width: 300px;
+}
+
+fieldset.row .form-floating>label {
+  margin-left: calc(var(--bs-gutter-x) * 0.5);
+}
+
+.page-link {
+  color: var(--bs-danger);
 }
