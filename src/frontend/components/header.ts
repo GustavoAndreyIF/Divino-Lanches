@@ -16,7 +16,7 @@ export class Header {
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03">
                 <span class="navbar-toggler-icon"></span>
               </button>
-                <img src="assets/images/divinoLanchesLogo.png" width="48" height="48" class="d-inline-block align-text-top" />
+                <img src="assets/images/divinoLanchesLogo.png" width="56" height="56" class="d-inline-block align-text-top" />
             </div>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
