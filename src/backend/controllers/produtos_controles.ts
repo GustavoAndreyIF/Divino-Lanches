@@ -26,7 +26,7 @@ class ProdutoControles extends ProdutosModel {
   async alterarQuantidadeEstoque(req: Request, res: Response) {
     let quantia: number = parseInt(req.body.quantia);
     let estoque_qt: number;
-    let product_id: number = parseInt(req.params.id);
+    let product_id: number = parseInt(req.body.id_Produto);
 
     estoque_qt = await new Promise((resolve, reject) => {
       this.getCell(
@@ -40,7 +40,7 @@ class ProdutoControles extends ProdutosModel {
         },
       );
     }); // precisa ser uma promessa, por que? Porque se não essa merda de estoque_qt fica undefined durante a requisição
-    estoque_qt = estoque_qt + quantia;
+    estoque_qt = estoque_qt - quantia;
 
     this.alterLinha(
       product_id,

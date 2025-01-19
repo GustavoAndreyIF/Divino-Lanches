@@ -63,6 +63,9 @@ class ClienteControle extends ClienteModel{
               resolve(true);
               return;
             }
+            else if (err) {
+              return res.send(err);
+            }
             resolve(false);
             return;
           })
