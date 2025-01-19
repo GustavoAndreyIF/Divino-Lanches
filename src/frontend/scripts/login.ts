@@ -1,6 +1,5 @@
 import { AutenticarController } from "../controllers/autenticarController.js";
-
-document.addEventListener("DOMContentLoaded", () => {
+console.log('buceta');
     const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
     loginForm.addEventListener("submit", async (event) => {
@@ -12,4 +11,3 @@ document.addEventListener("DOMContentLoaded", () => {
         const autenticarController = new AutenticarController();
         await autenticarController.handleLogin(email, password);
     });
-});

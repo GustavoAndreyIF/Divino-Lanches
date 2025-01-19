@@ -8,6 +8,14 @@ export class DomMain {
             const response = await fetch(pageUrl);
             const html = await response.text();
             this.updateContainer(html);
+
+            if (pageUrl.includes("login")) {
+                const script = document.createElement("script");
+                script.type = "module";
+                script.src = "./scripts/login.js";
+                document.body.appendChild(script);
+            }
+
             if (callback) {
                 callback();
             }

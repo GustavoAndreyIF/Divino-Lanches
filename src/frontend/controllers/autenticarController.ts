@@ -15,21 +15,21 @@ export class AutenticarController {
             await this.autenService.login(email, password);
 
             if (this.autenService.isLoggedIn()) {
-                const domHeaderFooter = new DomHeaderFooter();
-                await domHeaderFooter.initialize();
+                //const domHeaderFooter = new DomHeaderFooter();
+                //await domHeaderFooter.initialize();
 
-                const domMain = new DomMain("main");
-                const eventManager = new EventManager(domMain);
+                //const domMain = new DomMain("main");
+                //const eventManager = new EventManager(domMain);
 
-                eventManager.initializeEvents();
-
-                domMain.loadPage("./pages/home.html", eventManager.loadHomePage.bind(eventManager));
+                //eventManager.initializeEvents();
+                console.log('logou');
+                //domMain.loadPage("./pages/home.html", eventManager.loadHomePage.bind(eventManager));
             } else {
                 alert("Login falhou. Por favor, verifique suas credenciais.");
             }
         } catch (error) {
             console.error("Erro durante o login:", error);
-            alert("Erro durante o login. Por favor, tente novamente.");
+            //alert("Erro durante o login. Por favor, tente novamente.");
         }
     }
 }

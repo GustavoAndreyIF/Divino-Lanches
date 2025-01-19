@@ -21,10 +21,10 @@ class ClienteControle extends ClienteModel{
           if (Resultado.length!=0 && password === Resultado[0].cliente_log_senha){
             res.json(Resultado)
           }else if (password != Resultado[0].cliente_log_senha){
-            res.send('Senha incorreta')
+            res.json({ erro: 'Senha incorreta'})
           }
           else {
-            res.send('Email não encontrado')
+            res.send({erro: 'Email não encontrado'})
           }
         })
     }

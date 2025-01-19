@@ -60,6 +60,6 @@ export class AutenService {
 	// Método para obter os dados do usuário logado
 	getUserData(): any {
 		const user = localStorage.getItem("user");
-		return user ? JSON.parse(user) : null;
+		return user ? user: null;
 	}
 }

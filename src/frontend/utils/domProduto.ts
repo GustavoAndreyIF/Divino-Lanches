@@ -46,8 +46,9 @@ export class DomProduto {
 					return;
 				}
 				button.addEventListener("click", () => this.handleButtonClick(produto));
-				const idCliente = parseInt(localStorage.getItem("id_cliente") || "0", 10);
-				const apiServiceCarrinho = new ApiService("http://localhost:3000/ProdutosCarrinho/:id");
+				let userDataString: string = localStorage.getItem("user") ?? ""
+				const idCliente = parseInt(JSON.parse(userDataString).id_cliente || "0", 10);
+				const apiServiceCarrinho = new ApiService("http://localhost:3000/");
 				const carrinhoService = new CarrinhoService(apiServiceCarrinho);
 				carrinhoService.getCarrinhoCliente(idCliente).then((produtosCarrinho) => {
 					const produtoNoCarrinho = produtosCarrinho.some(
