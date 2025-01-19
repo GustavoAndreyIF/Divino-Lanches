@@ -48,7 +48,7 @@ export class DomProduto {
                 button.addEventListener("click", () => this.handleButtonClick(produto));
                 let userDataString: string = localStorage.getItem("user") ?? ""
                 const idCliente = parseInt(JSON.parse(userDataString)['id_cliente'] || "0", 10);
-                const apiServiceCarrinho = new ApiService("http://localhost:3000/");
+                const apiServiceCarrinho = new ApiService("http://localhost:3000");
                 const carrinhoService = new CarrinhoService(apiServiceCarrinho);
                 carrinhoService.getCarrinhoCliente(idCliente).then((produtosCarrinho) => {
                     const produtoNoCarrinho = produtosCarrinho.some(
