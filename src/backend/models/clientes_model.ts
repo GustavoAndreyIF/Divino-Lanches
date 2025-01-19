@@ -7,6 +7,10 @@ class ClienteModel{
         const query = `SELECT * FROM tb_clientes WHERE cliente_email = '${cliente_email}'`;
         db.query(query, callback);
     };
+    get_Email_Cliente(cliente_email: string, callback:queryCallback) {
+        const query = `SELECT cliente_email FROM tb_clientes WHERE cliente_email = '${cliente_email}'`;
+        db.query(query, callback);
+    };
     create_Cliente(cliente_email: string, cliente_log_senha: string, nm_cliente: string, callback:queryCallback){
         const query = `INSERT INTO tb_clientes (cliente_email, cliente_log_senha, nm_cliente) VALUES ('${cliente_email}', '${cliente_log_senha}', '${nm_cliente}')`;
         db.query(query, callback);
