@@ -12,12 +12,17 @@ export class EventManager {
             this.domMain.loadPage("./pages/home.html", this.loadHomePage.bind(this));
         });
 
+        document.getElementById("linkLogout")?.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            this.domMain.loadPage("./pages/home.html", this.loadHomePage.bind(this));
+        })
+
         document.getElementById("linkQuemSomos")?.addEventListener("click", () => {
             this.loadOtherPage("./pages/quemSomos.html");
         });
 
         document.getElementById("linkProdutos")?.addEventListener("click", () => {
-            this.loadOtherPage("./pages/product.html");
+            this.loadOtherPage("./pages/home.html");
         });
 
         document.getElementById("linkLogin")?.addEventListener("click", () => {
