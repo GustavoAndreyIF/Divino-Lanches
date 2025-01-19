@@ -1,5 +1,4 @@
 import { AutenticarController } from "../controllers/autenticarController.js";
-console.log('buceta');
     const loginForm = document.getElementById("loginForm") as HTMLFormElement;
 
     loginForm.addEventListener("submit", async (event) => {
