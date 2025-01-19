@@ -1,14 +1,16 @@
 import { Produto } from "../models/produto.js";
+import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
 import { CarrinhoService } from "../services/carrinhoService.js";
+import { ApiService } from "../services/apiService.js";
 
 export class DomProduto {
-    static renderProdutos(produtos: Produto[]): void {
-        const divProdutos = document.getElementById("divProdutos");
-        if (!divProdutos) return;
+	static renderProdutos(produtos: Produto[]): void {
+		const divProdutos = document.getElementById("divProdutos");
+		if (!divProdutos) return;
 
-        divProdutos.innerHTML = produtos
-            .map(
-                (produto) => `
+		divProdutos.innerHTML = produtos
+			.map(
+				(produto) => `
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <div class="card text-center bg-light" id="cardProduto">
                 <img src="./assets/images/produtosImg/${produto._nome}" class="card-img-top" />
@@ -28,55 +30,100 @@ export class DomProduto {
             </div>
           </div>
         `
-            )
-            .join("");
+			)
+			.join("");
 
-        produtos.forEach((produto) => {
-            const button = document.querySelector(
-                `#btnCardProduto${produto._id} button`
-            );
-            if (button) {
-                button.addEventListener("click", () => this.handleButtonClick(produto));
-            }
-        });
-    }
+		produtos.forEach((produto) => {
+			const button = document.querySelector(
+				`#btnCardProduto${produto._id} button`
+			);
+			if (button) {
+				if (!localStorage.getItem("id_cliente")) {
+					(button as HTMLButtonElement).disabled = true;
+					button.classList.remove("btn-warning", "btn-danger");
+					button.classList.add("btn-secondary");
+					button.textContent = "Faça login para comprar";
+					return;
+				}
+				button.addEventListener("click", () => this.handleButtonClick(produto));
+				const idCliente = parseInt(localStorage.getItem("id_cliente") || "0", 10);
+				const apiServiceCarrinho = new ApiService("http://localhost:3000/ProdutosCarrinho/:id");
+				const carrinhoService = new CarrinhoService(apiServiceCarrinho);
+				carrinhoService.getCarrinhoCliente(idCliente).then((produtosCarrinho) => {
+					const produtoNoCarrinho = produtosCarrinho.some(
+						(produtoCarrinho: ProdutoCarrinho) => produtoCarrinho._id === produto._id
+					);
+					if (produtoNoCarrinho) {
+						button.classList.remove("btn-warning");
+						button.classList.add("btn-danger");
+						button.textContent = "Remover do Carrinho";
+					} else {
+						button.classList.remove("btn-danger");
+						button.classList.add("btn-warning");
+						button.textContent = "Adicionar ao Carrinho";
+					}
+				});
+			}
+		});
+	}
 
-    static getButtonHtml(produto: Produto): string {
-        if (produto._estoque <= 0) {
-            return `
+	static getButtonHtml(produto: Produto): string {
+		if (produto._estoque <= 0) {
+			return `
             <form class="d-block" id="btnCardProduto${produto._id}">
                 <button type="button" class="btn btn-light" disabled>
                     Produto Indisponível
                 </button>
             </form>
         `;
-        }
+		}
 
-        return `
+		return `
         <form class="d-block" id="btnCardProduto${produto._id}">
             <button type="button" class="btn btn-warning">
                 Adicionar ao Carrinho
             </button>
         </form>
     `;
-    }
+	}
 
-    static handleButtonClick(produto: Produto): void {
-        const button = document.querySelector(`#btnCardProduto${produto._id} button`);
-        if (!button) return;
+	static async handleButtonClick(produto: Produto): Promise<void> {
+		const button = document.querySelector(`#btnCardProduto${produto._id} button`);
+		if (!button) return;
 
-        const isAddedToCart = button.classList.contains("btn-warning");
+		const isAddedToCart = button.classList.contains("btn-warning");
+		const idCliente = parseInt(localStorage.getItem("id_cliente") || "0", 10);
 
-        if (isAddedToCart) {
-            CarrinhoService.adicionarAoCarrinho(produto);
-            button.classList.remove("btn-warning");
-            button.classList.add("btn-danger");
-            button.textContent = "Remover do Carrinho";
-        } else {
-            CarrinhoService.removerDoCarrinho(produto);
-            button.classList.remove("btn-danger");
-            button.classList.add("btn-warning");
-            button.textContent = "Adicionar ao Carrinho";
-        }
-    }
+		if (isAddedToCart) {
+			const apiServiceAdd = new ApiService(
+				"http://localhost:3000/CriarProdutoCarrinho/"
+			);
+			const carrinhoAdd = new CarrinhoService(apiServiceAdd);
+
+			carrinhoAdd.adicionarCarrinhoProduto(idCliente, produto._id, 1);
+			button.classList.remove("btn-warning");
+			button.classList.add("btn-danger");
+			button.textContent = "Remover do Carrinho";
+		} 
+        if(!isAddedToCart) {
+			const apiServiceRemove = new ApiService(
+				"http://localhost:3000/DeletarProdutoCarrinho/:id"
+			);
+			const carrinhoDelete = new CarrinhoService(apiServiceRemove);
+			const apiServiceCarrinho = new ApiService(
+				"http://localhost:3000/ProdutosCarrinho/:id"
+			);
+			const carrinhoService = new CarrinhoService(apiServiceCarrinho);
+			carrinhoDelete.deletarProdutoCarrinho(
+				(await carrinhoService.getCarrinhoCliente(idCliente)).find(
+					(produtoCarrinho: ProdutoCarrinho) =>
+						produtoCarrinho._id === produto._id
+				)?._id || 0
+			);
+			button.classList.remove("btn-danger");
+			button.classList.add("btn-warning");
+			button.textContent = "Adicionar ao Carrinho";
+		}
+        
+	}
 }
