@@ -13,7 +13,7 @@ export class DomProduto {
                 (produto) => `
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <div class="card text-center bg-light" id="cardProduto">
-                <img src="./assets/images/produtosImg/${produto._nome}" class="card-img-top" />
+                <img src="./assets/images/produtosImg/${produto._nome.replace(/\s+/g, "_")}.png" class="card-img-top" />
                 <div class="card-header">
                 <h5 class="card-title">${produto._nome}</h5>
               </div>
