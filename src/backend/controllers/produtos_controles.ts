@@ -12,6 +12,13 @@ class ProdutoControles extends ProdutosModel {
       res.json(Produtos);
     });
   }
+  async PegarProduto(req: Request, res: Response) {
+    let id_produto: number = parseInt(req.params.id_produto);
+    this.getAllFiltered('id_Product', id_produto, (err: MysqlError | null, produtos: any) => {
+      if (err) return res.send(err);
+      res.json(produtos);
+    });
+  }
   async listarProdutosCategoria(req: Request, res: Response) {
     let categoria: string = req.params.categoria;
     this.getAllFiltered(

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/01/2025 às 16:03
+-- Tempo de geração: 19/01/2025 às 22:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `tb_carrinho_produtos` (
   `id_Product` int(11) NOT NULL,
   `Qt_Product_Carrinho` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tb_carrinho_produtos`
+--
+
+INSERT INTO `tb_carrinho_produtos` (`id_carrinho_produto`, `id_cliente`, `id_Product`, `Qt_Product_Carrinho`) VALUES
+(1, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -146,13 +153,13 @@ ALTER TABLE `tb_products`
 -- AUTO_INCREMENT de tabela `tb_carrinho_produtos`
 --
 ALTER TABLE `tb_carrinho_produtos`
-  MODIFY `id_carrinho_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_carrinho_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tb_clientes`
 --
 ALTER TABLE `tb_clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `tb_pedidos`
@@ -164,7 +171,7 @@ ALTER TABLE `tb_pedidos`
 -- AUTO_INCREMENT de tabela `tb_products`
 --
 ALTER TABLE `tb_products`
-  MODIFY `id_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restrições para tabelas despejadas

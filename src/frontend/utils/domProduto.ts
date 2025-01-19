@@ -47,7 +47,7 @@ export class DomProduto {
                 }
                 button.addEventListener("click", () => this.handleButtonClick(produto));
                 let userDataString: string = localStorage.getItem("user") ?? ""
-                const idCliente = parseInt(JSON.parse(userDataString).id_cliente || "0", 10);
+                const idCliente = parseInt(JSON.parse(userDataString)['id_cliente'] || "0", 10);
                 const apiServiceCarrinho = new ApiService("http://localhost:3000/");
                 const carrinhoService = new CarrinhoService(apiServiceCarrinho);
                 carrinhoService.getCarrinhoCliente(idCliente).then((produtosCarrinho) => {
@@ -93,11 +93,12 @@ export class DomProduto {
         if (!button) return;
 
         const isAddedToCart = button.classList.contains("btn-warning");
-        const idCliente = parseInt(localStorage.getItem("id_cliente") || "0", 10);
-
+		let userDataString: string = localStorage.getItem("user") ?? ""
+        const idCliente = parseInt(JSON.parse(userDataString)['id_cliente'] || "0", 10);
+		console.log(idCliente);
         if (isAddedToCart) {
             const apiServiceAdd = new ApiService(
-                "http://localhost:3000/CriarProdutoCarrinho/"
+                "http://localhost:3000"
             );
             const carrinhoAdd = new CarrinhoService(apiServiceAdd);
 
@@ -108,11 +109,11 @@ export class DomProduto {
         } 
         if(!isAddedToCart) {
             const apiServiceRemove = new ApiService(
-                "http://localhost:3000/DeletarProdutoCarrinho/:id"
+                "http://localhost:3000"
             );
             const carrinhoDelete = new CarrinhoService(apiServiceRemove);
             const apiServiceCarrinho = new ApiService(
-                "http://localhost:3000/ProdutosCarrinho/:id"
+                "http://localhost:3000"
             );
             const carrinhoService = new CarrinhoService(apiServiceCarrinho);
             carrinhoDelete.deletarProdutoCarrinho(

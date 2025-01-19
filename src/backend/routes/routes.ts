@@ -16,6 +16,9 @@ router.use(app.urlencoded({ extended: true }));
 router.get("/Produtos", (req, res) =>
   mainProdutos.listarTodosProdutos(req, res),
 );
+router.get("/PegarProduto/:id_produto", (req, res) => 
+  mainProdutos.PegarProduto(req, res),
+);
 router.get("/Produtos/:categoria", (req, res) =>
   mainProdutos.listarProdutosCategoria(req, res),
 );
