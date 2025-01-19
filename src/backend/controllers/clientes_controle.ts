@@ -14,8 +14,8 @@ class ClienteControle extends ClienteModel{
         })
     }
     async logar_cliente(req:Request, res:Response){
-        const email: string = req.body.email;
-        const password: string = req.body.password;
+        const email: string = req.body.cliente_email;
+        const password: string = req.body.cliente_log_senha;
         this.get_Cliente(email, (err: MysqlError | null, Resultado: any) =>{
           if (err) return res.send(err);
           if (Resultado.length!=0 && password === Resultado[0].cliente_log_senha){
