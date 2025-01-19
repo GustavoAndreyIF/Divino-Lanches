@@ -1,71 +1,65 @@
 export class AutenService {
-  // Construtor da classe que inicializa a propriedade 'loggedIn' com o valor padrão 'false'
-  constructor(private loggedIn = false) {}
+	constructor() {}
 
-  // Método que retorna o estado de login (true ou false)
-  isLoggedIn(): boolean {
-    return this.loggedIn;
-  }
+	// Método assíncrono para realizar login
+	async login(email: string, password: string): Promise<void> {
+		try {
+			// Faz uma requisição POST para a URL de login
+			const response = await fetch("http://localhost:3000/Login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded", // Define o tipo de conteúdo como URL encoded
+				},
+				// Converte os parâmetros de email e senha para o formato URL encoded
+				body: new URLSearchParams({
+					cliente_email: email,
+					cliente_log_senha: password,
+				}).toString(),
+			});
 
-  // Método que define o estado de login e armazena esse estado no localStorage
-  setLoggedIn(status: boolean): void {
-    this.loggedIn = status;
-    localStorage.setItem('loggedIn', JSON.stringify(status));
-  }
+			if (!response.ok)
+				throw new Error(`Login falhou com status: ${response.status}`);
 
-  // Método assíncrono para realizar o login do usuário
-  async login(email: string, password: string): Promise<void> {
-    try {
-      // Faz uma requisição POST para a rota '/Login' com o email e senha do usuário
-      const response = await fetch('/Login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+			const userData = await response.json();
+			console.log("Login concluido:", userData);
+			localStorage.setItem("user", JSON.stringify(userData[0]));
+		} catch (error) {
+			console.error("Erro durante o login:", error);
+		}
+	}
 
-      // Se a resposta for bem-sucedida (status 200-299)
-      if (response.ok) {
-        // Converte a resposta em JSON e armazena os dados do usuário
-        const userData = await response.json();
-        // Define o estado de login como true
-        this.setLoggedIn(true);
-        // Armazena os dados do usuário no localStorage
-        localStorage.setItem('user', JSON.stringify(userData));
-      } else {
-        // Lança um erro se o login falhar
-        throw new Error('Login failed');
-      }
-    } catch (error) {
-      // Exibe um erro no console se ocorrer um problema durante o login
-      console.error('Error during login:', error);
-    }
-  }
+	async register(email: string, password: string, name: string): Promise<void> {
+		try {
+			const response = await fetch("http://localhost:3000/Registrar", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				body: new URLSearchParams({
+					cliente_email: email,
+					cliente_log_senha: password,
+					nm_cliente: name,
+				}).toString(),
+			});
 
-  // Método assíncrono para registrar um novo usuário
-  async register(email: string, password: string, name: string): Promise<void> {
-    try {
-      // Faz uma requisição POST para a rota '/Registrar' com os dados do novo usuário
-      const response = await fetch('/Registrar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cliente_email: email, cliente_log_senha: password, nm_cliente: name }),
-      });
+			if (!response.ok)
+				throw new Error(`Registro falhou com status: ${response.status}`);
 
-      // Se a resposta for bem-sucedida (status 200-299)
-      if (response.ok) {
-        // Chama o método de login para logar o usuário recém-registrado
-        await this.login(email, password);
-      } else {
-        // Lança um erro se o registro falhar
-        throw new Error('Registration failed');
-      }
-    } catch (error) {
-      // Exibe um erro no console se ocorrer um problema durante o registro
-      console.error('Error during registration:', error);
-    }
-  }
+			console.log("Registo comcluido");
+			await this.login(email, password);
+		} catch (error) {
+			console.error("Erro durante registro:", error);
+			throw error;
+		}
+	}
+	// Método para verificar se há um usuário logado no localStorage
+	isLoggedIn(): boolean {
+		return localStorage.getItem("user") !== null;
+	}
+
+	// Método para obter os dados do usuário logado
+	getUserData(): any {
+		const user = localStorage.getItem("user");
+		return user ? JSON.parse(user) : null;
+	}
 }
