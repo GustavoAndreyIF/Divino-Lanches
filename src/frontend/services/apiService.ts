@@ -3,9 +3,19 @@ export class ApiService {
 	constructor(private _baseUrl: string) {}
 
 	// Método assíncrono get que recebe uma URL como parâmetro e retorna uma Promise de qualquer tipo.
-	async get(url: string): Promise<any> {
+	async get(url: string, data: URLSearchParams | undefined): Promise<any> {
 		// Faz uma requisição HTTP GET para a URL combinada _baseUrl e url.
-		const response = await fetch(`${this._baseUrl}/${url}`);
+		let finaldata: string = '';
+		if (typeof data !== 'undefined') {
+			finaldata = data.toString();
+		}
+		const response = await fetch(`${this._baseUrl}/${url}`, {
+			method: 'GET',
+			body: finaldata,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded", 
+			},
+		});
 		// Converte a resposta da requisição para JSON e a retorna.
 		return response.json();
 	}
@@ -17,7 +27,7 @@ export class ApiService {
 			method: "POST", // Define o método HTTP como POST.
 			body: data.toString(), // Converte os dados para uma string JSON e os inclui no corpo da requisição.
 			headers: {
-				"Content-Type": "application/x-www-form-urlencoded", // Define o cabeçalho Content-Type como application/json.
+				"Content-Type": "application/x-www-form-urlencoded", // Define o cabeçalho Content-Type como x-www-form-urlencoded.
 			},
 		});
 		// Converte a resposta da requisição para JSON e a retorna.

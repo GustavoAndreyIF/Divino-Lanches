@@ -1,4 +1,4 @@
-export class PedidosModel {
+export class Pedidos {
     constructor(
         public id_pedido: string,
 	    public id_cliente: string,

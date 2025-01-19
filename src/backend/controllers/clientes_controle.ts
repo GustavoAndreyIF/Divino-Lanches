@@ -50,8 +50,7 @@ class ClienteControle extends ClienteModel{
             if (err) return res.send(err);
             res.send('<h1>Usuário criado com sucesso!</h1>');
         });
-      }
-      else {
+      } else {
         res.send('<h1>este email já existe </h1>')
       }
     }

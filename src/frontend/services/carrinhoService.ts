@@ -5,8 +5,9 @@ export class CarrinhoService {
 	constructor(private _apiService: ApiService) {}
 
 	async getCarrinhoCliente(id_cliente: number) {
+		let reqBody = new URLSearchParams( {id_cliente: id_cliente.toString()})
 		let ProdutosCarrinhoGET = await this._apiService.get(
-			`ProdutosCarrinho/${id_cliente}`
+			`ProdutosCarrinho`, reqBody
 		);
 		let ProdutosCarrinhoList: ProdutoCarrinho[] = [];
 
