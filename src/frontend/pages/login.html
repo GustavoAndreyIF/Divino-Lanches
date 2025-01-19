@@ -1,7 +1,12 @@
 <main class="flex-fill">
 	<div class="container">
 		<div class="row justify-content-center">
-			<form class="col-sm-10 col-md-8 col-lg-6" id="loginForm">
+			<form
+				class="col-sm-10 col-md-8 col-lg-6"
+				id="loginForm"
+				action="/Login"
+				method="POST"
+			>
 				<h1>Login</h1>
 				<br />
 
@@ -11,7 +16,8 @@
 						id="txtEmail"
 						class="form-control"
 						placeholder=" "
-						autofocus
+						name="cliente_email"
+						required
 					/>
 					<label for="txtEmail">E-mail</label>
 				</div>
@@ -22,6 +28,8 @@
 						id="txtSenha"
 						class="form-control"
 						placeholder=" "
+						name="cliente_log_senha"
+						required
 					/>
 					<label for="txtSenha">Senha</label>
 				</div>
@@ -38,17 +46,13 @@
 					>
 				</div>
 
-				<button type="button" id="btnLogin" class="btn btn-lg btn-warning">
+				<button type="submit" id="btnLogin" class="btn btn-lg btn-warning">
 					Entrar
 				</button>
 
 				<p class="mt-3">
 					Esqueceu sua senha?
-					<a
-						href="../pages/recuperarsenha.html"
-						class="text-decoration-none text-danger"
-						>Clique aqui</a
-					>
+					<a href="#" class="text-decoration-none text-danger">Clique aqui</a>
 					para recuperá-la.
 				</p>
 			</form>
@@ -56,13 +60,4 @@
 	</div>
 </main>
 
-<script type="module">
-	import { AuthController } from "../controllers/authController.js";
-
-	document.getElementById("btnLogin").addEventListener("click", async () => {
-		const email = document.getElementById("txtEmail").value;
-		const password = document.getElementById("txtSenha").value;
-		const authController = new AuthController();
-		await authController.handleLogin(email, password);
-	});
-</script>
+<script type="module" src="../scripts/login.js"></script>
