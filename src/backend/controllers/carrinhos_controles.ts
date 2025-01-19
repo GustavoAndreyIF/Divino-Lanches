@@ -5,7 +5,7 @@ import CarrinhoModel from "../models/carrinhos_model";
 class Carrinho_Controle extends CarrinhoModel {
     constructor () {super()}
     async get_Carrinho_cliente(req: Request, res: Response) {
-        const id_cliente: number = parseInt(req.body.id_cliente);
+        const id_cliente: number = parseInt(req.params.id_cliente);
         this.get_Carrinho('id_cliente', id_cliente, (err: MysqlError | null, Produtos: any) => {
             if (err) return res.send(err);
             res.json(Produtos);

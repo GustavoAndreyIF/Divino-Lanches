@@ -5,7 +5,7 @@ export class ProdutoService {
 	constructor(private _apiService: ApiService) {}
 
 	async getTodosProdutos(): Promise<Produto[]> {
-		const produtos = await this._apiService.get("Produtos", undefined);
+		const produtos = await this._apiService.get("Produtos");
 		return produtos.map(
 			(produto: any) =>
 				new Produto(

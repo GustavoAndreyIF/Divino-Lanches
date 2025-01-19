@@ -6,8 +6,8 @@ import Carrinho_Controle from "./carrinhos_controles";
 class PedidoControle extends PedidoModel{
     constructor(public ProdutoControle: ProdutoControles, public Carrinho_Controle: Carrinho_Controle){super()}
     async pegar_pedido(req: Request, res: Response){
-        const id_pedido: number = parseInt(req.body.id_pedido);
-        const id_cliente: number = parseInt(req.body.id_cliente)
+        const id_pedido: number = parseInt(req.params.id_pedido);
+        const id_cliente: number = parseInt(req.params.id_cliente)
         this.get_Pedido(id_pedido, id_cliente, (err: MysqlError | null, Pedidos: any) => {
             if (err) return res.send(err);
             res.json(Pedidos)
@@ -18,6 +18,8 @@ class PedidoControle extends PedidoModel{
         const status_pedido: string = req.body.status_pedido;
         const id_pedido: number = parseInt(req.body.id_pedido)
         
+        req.params.id_cliente = req.body.id_cliente; //gambiarra sinistra
+
         let CarrinhoObjects: any = await this.Carrinho_Controle.get_Carrinho_cliente(req, res);
 
         await this.Carrinho_Controle.deletar_Carrinho_Todo(req, res);
