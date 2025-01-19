@@ -8,8 +8,8 @@ export class Navbar {
     async render(): Promise<string> {
         if (this.autenService.isLoggedIn()) {
             const userData = this.autenService.getUserData();
-            const idCliente = userData.id_cliente;
-            const apiServiceCarrinho = new ApiService("/ProdutosCarrinho");
+            const idCliente = parseInt(JSON.parse(userData).id_cliente);
+            const apiServiceCarrinho = new ApiService("http://localhost:3000");
             const carrinhoService = new CarrinhoService(apiServiceCarrinho);
             const carrinho = await carrinhoService.getCarrinhoCliente(idCliente);
             const itemCount = carrinho.length;

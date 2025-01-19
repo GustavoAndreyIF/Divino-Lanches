@@ -8,8 +8,7 @@ export class CarrinhoService {
 		let ProdutosCarrinhoGET = await this._apiService.get(
 			`ProdutosCarrinho/${id_cliente}`)
 		let ProdutosCarrinhoList: ProdutoCarrinho[] = [];
-
-		ProdutosCarrinhoGET.array.forEach((elemento: any) => {
+		ProdutosCarrinhoGET.forEach((elemento: any) => {
 			let Produto: ProdutoCarrinho = new ProdutoCarrinho(
 				elemento.id_carrinho_produto,
 				elemento.id_cliente,

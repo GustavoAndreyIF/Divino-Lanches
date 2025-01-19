@@ -24,7 +24,7 @@ router.put("/AlterarProdutoEstoque", (req, res) =>
 );// produtos
 
 
-router.get("/ProdutosCarrinho/:id", (req, res) => 
+router.get("/ProdutosCarrinho/:id_cliente", (req, res) => 
   mainCarrinhos.get_Carrinho_cliente(req, res),
 );
 router.post("/CriarProdutoCarrinho/", (req, res) =>
