@@ -116,11 +116,12 @@ export class DomProduto {
             console.log(produtosCarrinho)
 			const produtoCarrinho = produtosCarrinho.find(
 				(produtoCarrinho: ProdutoCarrinho) =>
-					produtoCarrinho._idProduto === produto._id
+					produtoCarrinho._idProduto === produto._id && produtoCarrinho._idcliente === idCliente
 			);
 			if (produtoCarrinho) {
                 console.log("deletarProdutoCarrinho");
-				await carrinhoService.deletarProdutoCarrinho(produtoCarrinho._id);
+				console.log(produtoCarrinho._id);
+				await carrinhoService.deletarProdutoCarrinho(produtoCarrinho._id, idCliente);
 			}
 			button.classList.remove("btn-danger");
 			button.classList.add("btn-warning");

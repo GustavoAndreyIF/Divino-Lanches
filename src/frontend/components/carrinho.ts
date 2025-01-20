@@ -48,9 +48,9 @@ export class Carrinho {
                 editarButton.addEventListener("click", () => this.editarProduto(produto.produtoCarrinho));
             }
 
-            if (deletarButton) {
+            /*if (deletarButton) {
                 deletarButton.addEventListener("click", () => this.deletarProduto(produto.produtoCarrinho._id));
-            }
+            }*/
         });
 
         const editarCarrinhoButton = document.getElementById("editarCarrinho");
@@ -69,10 +69,10 @@ export class Carrinho {
         // Implementar lógica para editar produto
     }
 
-    private async deletarProduto(idProdutoCarrinho: number): Promise<void> {
+    /*private async deletarProduto(idProdutoCarrinho: number): Promise<void> {
         await this.carrinhoService.deletarProdutoCarrinho(idProdutoCarrinho);
         this.carregarProdutos();
-    }
+    }*/
 
     private editarCarrinho(): void {
         // Implementar lógica para editar carrinho

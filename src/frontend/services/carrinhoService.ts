@@ -4,22 +4,20 @@ import { ApiService } from "./apiService.js";
 export class CarrinhoService {
 	constructor(private _apiService: ApiService) {}
 
-	async getCarrinhoCliente(id_cliente: number): Promise<ProdutoCarrinho[]> {
-		let ProdutosCarrinhoGET: any[] = await this._apiService.get(
-			`ProdutosCarrinho/${id_cliente}`
-		);
+	async getCarrinhoCliente(id_cliente: number) {
+		let ProdutosCarrinhoGET = await this._apiService.get(
+			`ProdutosCarrinho/${id_cliente}`)
 		let ProdutosCarrinhoList: ProdutoCarrinho[] = [];
-		if (Array.isArray(ProdutosCarrinhoGET)) {
-			ProdutosCarrinhoGET.forEach((elemento: any) => {
-				let Produto: ProdutoCarrinho = new ProdutoCarrinho(
-					elemento.id_carrinho_produto,
-					elemento.id_cliente,
-					elemento.id_Product,
-					elemento.Qt_Product_Carrinho
-				);
-				ProdutosCarrinhoList.push(Produto);
-			});
-		}
+		ProdutosCarrinhoGET.forEach((elemento: any) => {
+			let Produto: ProdutoCarrinho = new ProdutoCarrinho(
+				elemento.id_carrinho_produto,
+				elemento.id_cliente,
+				elemento.id_Product,
+				elemento.Qt_Product_Carrinho
+			);
+			ProdutosCarrinhoList.push(Produto);
+		});
+
 		return ProdutosCarrinhoList;
 	}
 
@@ -52,8 +50,8 @@ export class CarrinhoService {
 		return;
 	}
 
-	async deletarProdutoCarrinho(id_carrinho_produto: number) {
-		await this._apiService.delete(`DeletarProdutoCarrinho/${id_carrinho_produto}`);
+	async deletarProdutoCarrinho(id_produto: number, id_cliente:number) {
+		await this._apiService.delete(`DeletarProdutoCarrinho/${id_produto}/cliente/${id_cliente}`);
 		return;
 	}
 }

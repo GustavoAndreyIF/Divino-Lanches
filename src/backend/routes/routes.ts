@@ -36,7 +36,7 @@ router.post("/CriarProdutoCarrinho/", (req, res) =>
 router.put("/ProdutoCarrinhoAltQt", (req, res) =>
   mainCarrinhos.alterar_carrinho_Produto_Qt(req, res),
 );
-router.delete("/DeletarProdutoCarrinho/:id", (req, res) =>
+router.delete("/DeletarProdutoCarrinho/:id_produto/cliente/:id_cliente", (req, res) =>
   mainCarrinhos.deletar_Produto_Carrinho(req, res),
 );
 

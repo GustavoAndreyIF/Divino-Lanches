@@ -23,6 +23,15 @@ class CarrinhoModel {
     const query = `DELETE FROM tb_carrinho_produtos WHERE ${keyCollumn} = ${value}`;
     db.query(query, callback);
   }
+  remover_keyCliente(
+    keyCollumn: string,
+    value: number,
+    cliente_id:number,
+    callback: queryCallback,
+  ) {
+    const query = `DELETE FROM tb_carrinho_produtos WHERE ${keyCollumn} = ${value} AND id_cliente = ${cliente_id}`;
+    db.query(query, callback);
+  }
   alt_Atributo(
     targetCollumn: string,
     value: string | number,

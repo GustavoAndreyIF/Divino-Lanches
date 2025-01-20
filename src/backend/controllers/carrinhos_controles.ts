@@ -22,8 +22,9 @@ class Carrinho_Controle extends CarrinhoModel {
         })
     }
     async deletar_Produto_Carrinho(req: Request, res: Response) {
-        let id_carrinho_produto: number = parseInt(req.body.id_carrinho_produto);
-        this.remover('id_carrinho_produto',id_carrinho_produto, (err:MysqlError|null, Resultado: any) => {
+        let id_produto: number = parseInt(req.params.id_produto);
+        let id_cliente: number = parseInt(req.params.id_cliente);
+        this.remover_keyCliente('id_carrinho_produto',id_produto, id_cliente, (err:MysqlError|null, Resultado: any) => {
             if (err) return res.send(err); 
             res.json(Resultado);
         });

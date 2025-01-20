@@ -171,7 +171,7 @@ ALTER TABLE `tb_pedidos`
 -- AUTO_INCREMENT de tabela `tb_products`
 --
 ALTER TABLE `tb_products`
-  MODIFY `id_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_Product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
