@@ -12,7 +12,7 @@ class ProdutosModel {
     callback: queryCallback,
   ): any {
     let query = `SELECT * FROM tb_products WHERE ${keyCollumn} = '${filter};'`;
-    if (typeof filter === "number") {
+    if (typeof filter == "number") {
       query = `SELECT * FROM tb_products WHERE ${keyCollumn} = ${filter};`;
     } 
     db.query(query, callback);

@@ -17,10 +17,11 @@ export class CardProduto {
     async render(idCliente: number): Promise<string> {
         const produtosCarrinho = await this.carrinhoService.getCarrinhoCliente(idCliente);
         let html = '';
-
+        
         for (const produtoCarrinho of produtosCarrinho) {
             try {
                 const produto = await this.produtoService.getProdutoPorId(produtoCarrinho._idProduto);
+                console.log(produto);
                 html += `
                     <div class="row g-3" id="produtoCarrinho-${produtoCarrinho._id}">
                         <div class="col-4 col-md-3 col-lg-2">
