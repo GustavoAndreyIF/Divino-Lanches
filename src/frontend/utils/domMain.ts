@@ -15,7 +15,12 @@ export class DomMain {
                 script.src = "./scripts/login.js";
                 document.body.appendChild(script);
             }
-
+            if (pageUrl.includes("cadastro")) {
+                const script1 = document.createElement("script");
+                script1.type = "module";
+                script1.src = "./scripts/register.js";
+                document.body.appendChild(script1);
+            }
             if (callback) {
                 callback();
             }
