@@ -4,7 +4,7 @@ import { ProdutoService } from "../services/produtoService.js";
 import { ProdutoController } from "../controllers/produtoController.js";
 import { DomProduto } from "./domProduto.js";
 import { DomHeaderFooter } from "./domHeaderFooter.js";
-import { Carrinho } from "../components/carrinho.js";
+import { Carrinho } from "../components/carrinhoRender.js";
 
 export class EventManager {
     constructor(private domMain: DomMain) {}
