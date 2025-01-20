@@ -2,20 +2,17 @@
 	<div class="container">
 		<h1>Carrinho de Compras</h1>
 		<ul class="list-group mb-3">
-			<div id="carrinhoProduto"></div>
-			<div id="carrinhoControles">
-				<li class="list-group-item py-3">
-					<div class="text-end" id="btnCarrinho">
-						<h4 class="text-dark mb-3">
-							Valor Total: ${carrinhoController.getTotal()}
-						</h4>
-						<a href="#" class="btn btn-light btn-lg"> Editar Carrinho </a>
-						<a href="#" class="btn btn-warning btn-lg ms-2 mt-xs-3"
-							>Finalizar Compra</a
-						>
-					</div>
-				</li>
-			</div>
+			<li class="list-group-item py-3" id="carrinhoProduto"></li>
+			<li class="list-group-item py-3">
+				<div class="text-end">
+					<h4 class="text-dark mb-3" id="valorTotal">
+						Valor Total: R$ 63,84
+					</h4>
+					<a href="#" class="btn btn-warning btn-lg ms-2 mt-xs-3"
+						>Continuar Comprando</a
+					>
+				</div>
+			</li>
 		</ul>
 	</div>
 </main>

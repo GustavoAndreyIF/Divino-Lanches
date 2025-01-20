@@ -4,6 +4,7 @@ import { ProdutoService } from "../services/produtoService.js";
 import { ProdutoController } from "../controllers/produtoController.js";
 import { DomProduto } from "./domProduto.js";
 import { DomHeaderFooter } from "./domHeaderFooter.js";
+import { Carrinho } from "../components/carrinhoRender.js";
 
 export class EventManager {
 	constructor(private domMain: DomMain) {}
@@ -55,7 +56,10 @@ export class EventManager {
 		});
 
 		document.getElementById("linkCarrinho")?.addEventListener("click", () => {
-			this.loadOtherPage("./pages/carrinho.html");
+			this.domMain.loadPage(
+				"./pages/carrinho.html",
+				this.loadCarrinhoPage.bind(this)
+			);
 		});
 	}
 
@@ -82,5 +86,9 @@ export class EventManager {
 	private loadOtherPage(pageUrl: string): void {
 		this.domMain.clearHeaderCarousel();
 		this.domMain.loadPage(pageUrl);
+	}
+
+	private loadCarrinhoPage(): void {
+		new Carrinho();
 	}
 }
