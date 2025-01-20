@@ -24,12 +24,11 @@ export class Carrinho {
         this.render();
     }
 
-    private render(): void {
+    private async render(): Promise<void> {
         const carrinhoProdutoContainer = document.getElementById("carrinhoProduto");
         if (carrinhoProdutoContainer) {
-            carrinhoProdutoContainer.innerHTML = this.produtos
-                .map((produto) => produto.render())
-                .join("");
+            const produtosHtml = await Promise.all(this.produtos.map(produto => produto.render()));
+            carrinhoProdutoContainer.innerHTML = produtosHtml.join("");
         }
 
         const carrinhoControlesContainer = document.getElementById("carrinhoControles");

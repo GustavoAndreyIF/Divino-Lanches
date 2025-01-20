@@ -20,6 +20,9 @@ export class Navbar {
                         <i class="bi-cart" style="font-size: 24px; line-height: 24px"></i>
                     </a>
                 </li>
+                <li class=nav-item">
+                    <a href="#" id="linkPedidos" class="btn btn-light">Pedidos</a>
+                </li>
                 <li class="nav-item">
                     <a href="#" id="linkLogout" class="btn btn-light">Sair</a>
                 </li>
