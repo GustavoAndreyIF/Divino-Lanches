@@ -36,7 +36,7 @@ class ClienteControle extends ClienteModel{
         let email_existe: boolean = await new Promise((resolve,reject) =>{
           this.get_Email_Cliente(cliente_email, (err: MysqlError | null, results: any) => {
             if (err) return res.send(err);
-            if (results.length != 0) {
+            if (results) {
               resolve(true);
               return;
             }

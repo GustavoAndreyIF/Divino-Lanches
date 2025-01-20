@@ -32,15 +32,4 @@ export class AutenticarController {
             //alert("Erro durante o login. Por favor, tente novamente.");
         }
     }
-
-    async handleRegister(email: string, password: string, nome: string): Promise<void> {
-        try {
-            await this.autenService.register(email, password, nome);
-
-            await this.handleLogin(email, password);
-        }
-        catch (error) {
-            console.error("Erro durante o Registro:", error);
-        }
-    };
 }

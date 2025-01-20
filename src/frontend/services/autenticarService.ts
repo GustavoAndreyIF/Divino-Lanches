@@ -30,23 +30,23 @@ export class AutenService {
 
 	async register(email: string, password: string, name: string): Promise<void> {
 		try {
-			const bodyResponse = new URLSearchParams({
-				cliente_email: email,
-				cliente_log_senha: password,
-				nm_cliente: name,
-			});
 			const response = await fetch("http://localhost:3000/Registrar", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 				},
-				body: bodyResponse.toString(),
+				body: new URLSearchParams({
+					cliente_email: email,
+					cliente_log_senha: password,
+					nm_cliente: name,
+				}).toString(),
 			});
 
 			if (!response.ok)
 				throw new Error(`Registro falhou com status: ${response.status}`);
-			console.log(response);
+
 			console.log("Registo comcluido");
+			await this.login(email, password);
 		} catch (error) {
 			console.error("Erro durante registro:", error);
 			throw error;
