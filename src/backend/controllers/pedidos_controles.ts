@@ -3,8 +3,9 @@ import { Request, Response } from "express";
 import PedidoModel from "../models/pedidos_model";
 import ProdutoControles from "./produtos_controles";
 import Carrinho_Controle from "./carrinhos_controles";
+import { rejects } from "assert";
 class PedidoControle extends PedidoModel{
-    constructor(public ProdutoControle: ProdutoControles, public Carrinho_Controle: Carrinho_Controle){super()}
+    constructor(private ProdutoControle: ProdutoControles, private Carrinho_Controle: Carrinho_Controle){super()}
     async pegar_pedido(req: Request, res: Response){
         const id_pedido: number = parseInt(req.params.id_pedido);
         const id_cliente: number = parseInt(req.params.id_cliente)
@@ -17,20 +18,30 @@ class PedidoControle extends PedidoModel{
         const id_cliente: number = parseInt(req.body.id_cliente);
         const status_pedido: string = req.body.status_pedido;
         const id_pedido: number = parseInt(req.body.id_pedido)
-        
-        req.params.id_cliente = req.body.id_cliente; //gambiarra sinistra
 
-        let CarrinhoObjects: any = await this.Carrinho_Controle.get_Carrinho_cliente(req, res);
-
-        await this.Carrinho_Controle.deletar_Carrinho_Todo(req, res);
-
-        CarrinhoObjects.forEach((object: any) => {
-            req.body.quantia = object.Qt_Product_Carrinho;
-            this.create_Pedido(id_cliente,object.id_Product,object.Qt_Product_Carrinho,status_pedido, id_pedido,(err: MysqlError | null, Resultado: any) => {
+        let CarrinhoObjects: any = await new Promise((resolve, rejects) => {
+            this.Carrinho_Controle.get_Carrinho('id_cliente', id_cliente, (err: MysqlError | null, Produtos: any) => {
                 if (err) return res.send(err);
+                return resolve(Produtos);
             })
-        });
-        res.send('Pedido criado!')
+        })
+        
+        await new Promise((resolve, rejects) => {
+            this.Carrinho_Controle.remover('id_cliente', id_cliente, (err: MysqlError | null, results) => {
+                if (err) return res.send(err);
+                resolve(results);
+            })
+        })
+
+        for (let object of CarrinhoObjects) {
+            await new Promise((resolve, rejects) => {
+                this.create_Pedido(id_cliente,object.id_Product,object.Qt_Product_Carrinho,status_pedido, id_pedido,(err: MysqlError | null, Resultado: any) => {
+                    if (err) return res.send(err);
+                    resolve(Resultado);
+                });
+            })
+        }
+        res.send('Pedido criado!');
     }
     async deletar_pedido(req: Request, res: Response){
         const id_pedido: number = parseInt(req.params.id_pedido);

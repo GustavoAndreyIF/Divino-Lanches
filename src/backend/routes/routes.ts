@@ -56,8 +56,8 @@ router.get('/getPedidos/:id_pedido/cliente/:id_cliente', async (req, res) =>
   mainPedidos.pegar_pedido(req, res),
 );
 
-router.post('/criarpedido', async (req, res) => 
-  mainPedidos.criar_pedido(req, res),
+router.post('/criarpedido', async (req, res, next) =>
+  mainPedidos.criar_pedido(req, res)
 )
 
 router.delete('/deletarpedido/:id_pedido', async (req, res) => 
