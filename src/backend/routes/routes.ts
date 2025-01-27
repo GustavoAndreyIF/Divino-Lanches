@@ -22,9 +22,6 @@ router.get("/PegarProduto/:id_produto", (req, res) =>
 router.get("/Produtos/:categoria", (req, res) =>
   mainProdutos.listarProdutosCategoria(req, res),
 );
-router.put("/AlterarProdutoEstoque", (req, res) =>
-  mainProdutos.alterarQuantidadeEstoque(req, res),
-);// produtos
 
 
 router.get("/ProdutosCarrinho/:id_cliente", (req, res) => 
