@@ -32,6 +32,16 @@ p.truncate-3l {
   text-overflow: ellipsis;
 }
 
+.card-body p.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: calc(1.2em * 3); /* Assuming line height is 1.2em */
+}
+
 .flex-even {
   flex: 1;
   min-width: 300px;
