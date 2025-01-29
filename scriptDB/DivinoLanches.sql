@@ -100,11 +100,27 @@ CREATE TABLE `tb_products` (
 --
 
 INSERT INTO `tb_products` (`id_Product`, `nm_Product`, `price_Product`, `qt_Estoque`, `categoria`, `descricao`) VALUES
-(1, 'Pão pizza', 3.5, 24, 'salgado', 'Pão recheado com recheio de pizza'),
-(2, 'Bolo de pote', 5, 16, 'doce', 'Bolo de pote sabor chocolate'),
-(3, 'Rosquinha doce', 4, 12, 'doce', 'Rosquinha com recheio de chocolate'),
-(4, 'Cone trufado', 5, 20, 'doce', 'Cone trufado com recheio de ninho'),
-(5, 'Mini pizza', 4, 10, 'salgado', 'Mini pizza de calabresa');
+(1, 'Pão pizza', 3.5, 24, 'salgado', 'Pão recheado com recheio de pizza.'),
+(2, 'Bolo de pote', 5, 16, 'doce', 'Bolo de pote sabor chocolate.'),
+(3, 'Rosquinha doce', 4, 12, 'doce', 'Rosquinha com recheio de chocolate.'),
+(4, 'Cone trufado', 5, 20, 'doce', 'Cone trufado com recheio de ninho.'),
+(5, 'Mini pizza', 4, 10, 'salgado', 'Mini pizza de calabresa.');
+(6, 'Hamburguer', 6, 30, 'salgado', 'Sanduíche com hamburguer, alface, tomate e queijo.');
+(7, 'Enroladinho', 3.5, 15, 'salgado', 'Enroladinho de salsicha.');
+(8, 'Tapioca de frango', 3.5, 17, 'salgado', 'Tapioca com recheio de frango desfiado.');
+(9, 'Bolinho de macaxeira', 3.5, 10, 'salgado', 'Bolinho de macaxeira frito.');
+(10, 'Brigadeiro', 1.5, 10, 'doce', 'Brigadeiro granulado com M&Ms.');
+(11, 'Empada', 5, 19, 'salgado', 'Empada com recheio de frango desfiado.');
+(12, 'Esfiha', 4, 13, 'salgado', 'Esfiha com recheio de carnde de sol.');
+(13, 'Pão de queijo', 3.5, 26, 'salgado', 'Pão de queijo assado no forno.');
+(14, 'Pastel', 3.5, 40, 'salgado', 'Pastel frito no óleo.');
+(15, 'Coxinha', 4, 27, 'salgado', 'Coxinha com rechieo de frango desfiado.');
+(16, 'Torta salgada', 5, 37, 'salgado', 'Torta salgada com recheio de carne.');
+(17, 'Brownie', 3, 26, 'doce', 'Pequeno bolo de chocolate.');
+(18, 'Bolinho de macaxeira', 3.5, 11, 'salgado', 'Bolinho de macaxeira frito.');
+(19, 'Pudim', 5, 32, 'doce', 'Pudim cremoso.');
+(20, 'Dindin', 5, 17, 'doce', 'Dindin de ninho com nutella.');
+
 
 --
 -- Índices para tabelas despejadas
