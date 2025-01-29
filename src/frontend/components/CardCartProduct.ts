@@ -24,12 +24,12 @@ export class CardProduto {
 				const produto = await this.produtoService.getProdutoPorId(
 					produtoCarrinho._idProduto
 				);
-				console.log(produto);
 				html += `
+                <li class="list-group-item py-3">
                     <div class="row g-3" id="produtoCarrinho-${produtoCarrinho._id}">
                         <div class="col-4 col-md-3 col-lg-2">
                             <a href="#">
-                                <img src="/img/produtos/${produto._nome.replace(/\s+/g, "_")}.jpg" class="img-thumbnail">
+                                <img src="./assets/images/produtosImg/${produto._nome.replace(/\s+/g, "_")}.png" class="img-thumbnail">
                             </a>
                         </div>
                         <div class="col-8 col-md-9 col-lg-7 col-xl-8 text-left align-self-center">
@@ -60,6 +60,7 @@ export class CardProduto {
                             </div>
                         </div>
                     </div>
+                </li>
                 `;
 			} catch (error) {
 				console.error(

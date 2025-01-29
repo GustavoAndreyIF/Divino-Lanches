@@ -60,6 +60,7 @@ export class EventManager {
 				"./pages/carrinho.html",
 				this.loadCarrinhoPage.bind(this)
 			);
+			this.domMain.clearHeaderCarousel();
 		});
 	}
 
