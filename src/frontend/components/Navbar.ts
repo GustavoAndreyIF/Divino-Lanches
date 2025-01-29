@@ -1,19 +1,19 @@
-import { AutenService } from "../services/autenticarService.js";
-import { CarrinhoService } from "../services/carrinhoService.js";
-import { ApiService } from "../services/apiService.js";
+import { AutenService } from "../services/ServiceAuthenticate.js";
+import { CarrinhoService } from "../services/ServiceCart.js";
+import { ApiService } from "../services/ServiceAPI.js";
 
 export class Navbar {
-    constructor(private autenService: AutenService) {}
+	constructor(private autenService: AutenService) {}
 
-    async render(): Promise<string> {
-        if (this.autenService.isLoggedIn()) {
-            const userData = this.autenService.getUserData();
-            const idCliente = parseInt(JSON.parse(userData).id_cliente);
-            const apiServiceCarrinho = new ApiService("http://localhost:3000");
-            const carrinhoService = new CarrinhoService(apiServiceCarrinho);
-            const carrinho = await carrinhoService.getCarrinhoCliente(idCliente);
-            const itemCount = carrinho.length;
-            return `
+	async render(): Promise<string> {
+		if (this.autenService.isLoggedIn()) {
+			const userData = this.autenService.getUserData();
+			const idCliente = parseInt(JSON.parse(userData).id_cliente);
+			const apiServiceCarrinho = new ApiService("http://localhost:3000");
+			const carrinhoService = new CarrinhoService(apiServiceCarrinho);
+			const carrinho = await carrinhoService.getCarrinhoCliente(idCliente);
+			const itemCount = carrinho.length;
+			return `
                 <li class="nav-item">
                     <span id="badgeCarrinho" class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0" title="${itemCount} produto(s) no carrinho"><small>${itemCount}</small></span>
                     <a href="#" id="linkCarrinho" class="nav-link text-dark">
@@ -27,8 +27,8 @@ export class Navbar {
                     <a href="#" id="linkLogout" class="btn btn-light">Sair</a>
                 </li>
             `;
-        } else {
-            return `
+		} else {
+			return `
                 <li class="nav-item">
                     <a href="#" id="linkLogin" class="btn btn-light">Entrar</a>
                 </li>
@@ -36,6 +36,6 @@ export class Navbar {
                     <a href="#" id="linkCadastrar" class="btn btn-warning">Registrar</a>
                 </li>
             `;
-        }
-    }
+		}
+	}
 }

@@ -1,7 +1,7 @@
 import { Produto } from "../models/produto.js";
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
-import { CarrinhoService } from "../services/carrinhoService.js";
-import { ApiService } from "../services/apiService.js";
+import { CarrinhoService } from "../services/ServiceCart.js";
+import { ApiService } from "../services/ServiceAPI.js";
 
 export class DomProduto {
 	static renderProdutos(produtos: Produto[]): void {
@@ -113,15 +113,19 @@ export class DomProduto {
 		} else {
 			const produtosCarrinho =
 				await carrinhoService.getCarrinhoCliente(idCliente);
-            console.log(produtosCarrinho)
+			console.log(produtosCarrinho);
 			const produtoCarrinho = produtosCarrinho.find(
 				(produtoCarrinho: ProdutoCarrinho) =>
-					produtoCarrinho._idProduto === produto._id && produtoCarrinho._idcliente === idCliente
+					produtoCarrinho._idProduto === produto._id &&
+					produtoCarrinho._idcliente === idCliente
 			);
 			if (produtoCarrinho) {
-                console.log("deletarProdutoCarrinho");
+				console.log("deletarProdutoCarrinho");
 				console.log(produtoCarrinho._id);
-				await carrinhoService.deletarProdutoCarrinho(produtoCarrinho._id, idCliente);
+				await carrinhoService.deletarProdutoCarrinho(
+					produtoCarrinho._id,
+					idCliente
+				);
 			}
 			button.classList.remove("btn-danger");
 			button.classList.add("btn-warning");

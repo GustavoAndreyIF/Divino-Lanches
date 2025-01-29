@@ -1,28 +1,31 @@
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
 import { Produto } from "../models/produto.js";
-import { CarrinhoService } from "../services/carrinhoService.js";
-import { ProdutoService } from "../services/produtoService.js";
-import { ApiService } from "../services/apiService.js";
+import { CarrinhoService } from "../services/ServiceCart.js";
+import { ProdutoService } from "../services/ServiceProduct.js";
+import { ApiService } from "../services/ServiceAPI.js";
 
 export class CardProduto {
-    private carrinhoService: CarrinhoService;
-    private produtoService: ProdutoService;
+	private carrinhoService: CarrinhoService;
+	private produtoService: ProdutoService;
 
-    constructor() {
-        const apiService = new ApiService("http://localhost:3000");
-        this.carrinhoService = new CarrinhoService(apiService);
-        this.produtoService = new ProdutoService(apiService);
-    }
+	constructor() {
+		const apiService = new ApiService("http://localhost:3000");
+		this.carrinhoService = new CarrinhoService(apiService);
+		this.produtoService = new ProdutoService(apiService);
+	}
 
-    async render(idCliente: number): Promise<string> {
-        const produtosCarrinho = await this.carrinhoService.getCarrinhoCliente(idCliente);
-        let html = '';
-        
-        for (const produtoCarrinho of produtosCarrinho) {
-            try {
-                const produto = await this.produtoService.getProdutoPorId(produtoCarrinho._idProduto);
-                console.log(produto);
-                html += `
+	async render(idCliente: number): Promise<string> {
+		const produtosCarrinho =
+			await this.carrinhoService.getCarrinhoCliente(idCliente);
+		let html = "";
+
+		for (const produtoCarrinho of produtosCarrinho) {
+			try {
+				const produto = await this.produtoService.getProdutoPorId(
+					produtoCarrinho._idProduto
+				);
+				console.log(produto);
+				html += `
                     <div class="row g-3" id="produtoCarrinho-${produtoCarrinho._id}">
                         <div class="col-4 col-md-3 col-lg-2">
                             <a href="#">
@@ -58,11 +61,14 @@ export class CardProduto {
                         </div>
                     </div>
                 `;
-            } catch (error) {
-                console.error(`Erro ao carregar produto com ID ${produtoCarrinho._idProduto}:`, error);
-            }
-        }
+			} catch (error) {
+				console.error(
+					`Erro ao carregar produto com ID ${produtoCarrinho._idProduto}:`,
+					error
+				);
+			}
+		}
 
-        return html;
-    }
+		return html;
+	}
 }

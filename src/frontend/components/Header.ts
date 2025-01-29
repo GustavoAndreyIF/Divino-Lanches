@@ -1,5 +1,5 @@
-import { Navbar } from "./navBar.js";
-import { AutenService } from "../services/autenticarService.js";
+import { Navbar } from "./Navbar.js";
+import { AutenService } from "../services/ServiceAuthenticate.js";
 
 export class Header {
 	private navbar: Navbar;

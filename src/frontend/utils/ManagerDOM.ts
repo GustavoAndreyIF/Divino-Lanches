@@ -1,4 +1,4 @@
-import { HeaderCarousel } from "../components/headerCarousel.js";
+import { HeaderCarousel } from "../components/Carousel.js";
 
 export class DomMain {
     constructor(private containerId: string) {}

@@ -1,12 +1,13 @@
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
-import { ApiService } from "./apiService.js";
+import { ApiService } from "./ServiceAPI.js";
 
 export class CarrinhoService {
 	constructor(private _apiService: ApiService) {}
 
 	async getCarrinhoCliente(id_cliente: number) {
 		let ProdutosCarrinhoGET = await this._apiService.get(
-			`ProdutosCarrinho/${id_cliente}`)
+			`ProdutosCarrinho/${id_cliente}`
+		);
 		let ProdutosCarrinhoList: ProdutoCarrinho[] = [];
 		ProdutosCarrinhoGET.forEach((elemento: any) => {
 			let Produto: ProdutoCarrinho = new ProdutoCarrinho(
@@ -50,8 +51,10 @@ export class CarrinhoService {
 		return;
 	}
 
-	async deletarProdutoCarrinho(id_produto: number, id_cliente:number) {
-		await this._apiService.delete(`DeletarProdutoCarrinho/${id_produto}/cliente/${id_cliente}`);
+	async deletarProdutoCarrinho(id_produto: number, id_cliente: number) {
+		await this._apiService.delete(
+			`DeletarProdutoCarrinho/${id_produto}/cliente/${id_cliente}`
+		);
 		return;
 	}
 }
