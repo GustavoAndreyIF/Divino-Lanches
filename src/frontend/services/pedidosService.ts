@@ -1,6 +1,7 @@
 import { ApiService } from "./apiService.js";
 import { Pedidos } from "../models/pedidosModel.js";
-class PedidosService {
+import { Url } from "url";
+export class PedidosService {
     constructor(private _apiService: ApiService) {}
     
     async getPedido(id_cli: number, id_ped: number): Promise<any> {
@@ -13,6 +14,13 @@ class PedidosService {
     }
 
     async criarPedido(id_cliente: number, status_pedido: string, id_pedido: number) {
-        
+        let reqBody: URLSearchParams = new URLSearchParams({
+            id_cliente: id_cliente.toString(), 
+            status_pedido: id_pedido.toString(),
+            id_pedido: id_pedido.toString()
+        })
+        await this._apiService.post('criarpedido/', reqBody);
+        return;
     } 
+    
 }

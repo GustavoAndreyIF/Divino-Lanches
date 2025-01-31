@@ -1,11 +1,10 @@
 import { MysqlError } from "mysql";
 import { Request, Response } from "express";
 import PedidoModel from "../models/pedidos_model";
-import ProdutoControles from "./produtos_controles";
 import Carrinho_Controle from "./carrinhos_controles";
 import { rejects } from "assert";
 class PedidoControle extends PedidoModel{
-    constructor(private ProdutoControle: ProdutoControles, private Carrinho_Controle: Carrinho_Controle){super()}
+    constructor(private Carrinho_Controle: Carrinho_Controle){super()}
     async pegar_pedido(req: Request, res: Response){
         const id_pedido: number = parseInt(req.params.id_pedido);
         const id_cliente: number = parseInt(req.params.id_cliente)
