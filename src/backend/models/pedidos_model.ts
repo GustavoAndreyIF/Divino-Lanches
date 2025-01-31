@@ -7,7 +7,7 @@ class PedidoModel{
         db.query(query, callback);
     };
     create_Pedido(id_cliente: number, id_produto: number, qt_pedido: number, status_pedido: string, id_pedido: number,  callback:queryCallback){
-        const query = `INSERT INTO tb_pedidos (id_cliente, id_Produto, Qt_Pedido, status_pedido, id_pedido) VALUES (${id_cliente}, ${id_produto}, ${qt_pedido}, ${status_pedido}, ${id_pedido})`;
+        const query = `INSERT INTO tb_pedidos (id_cliente, id_Produto, Qt_Pedido, status_pedido, id_pedido) VALUES (${id_cliente}, ${id_produto}, ${qt_pedido}, '${status_pedido}', ${id_pedido})`;
         db.query(query, callback)
     };
     delete_Pedido(id_pedido: number, callback:queryCallback) {

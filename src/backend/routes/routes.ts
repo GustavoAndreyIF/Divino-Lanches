@@ -10,7 +10,7 @@ let router = app.Router();
 let mainProdutos = new ProdutoControles();
 let mainCarrinhos = new Carrinho_Controle();
 let mainCliente = new ClienteControle();
-let mainPedidos = new PedidoControle(mainProdutos, mainCarrinhos);
+let mainPedidos = new PedidoControle(mainCarrinhos);
 
 router.use(app.urlencoded({ extended: true }));
 router.get("/Produtos", (req, res) =>
@@ -56,8 +56,8 @@ router.get('/getPedidos/:id_pedido/cliente/:id_cliente', async (req, res) =>
   mainPedidos.pegar_pedido(req, res),
 );
 
-router.post('/criarpedido', async (req, res) => 
-  mainPedidos.criar_pedido(req, res),
+router.post('/criarpedido', async (req, res) =>
+  mainPedidos.criar_pedido(req, res)
 )
 
 router.delete('/deletarpedido/:id_pedido', async (req, res) => 
