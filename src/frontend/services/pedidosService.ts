@@ -1,5 +1,5 @@
-import { ApiService } from "./apiService.js";
-import { Pedidos } from "../models/pedidosModel.js";
+import { ApiService } from "./ServiceAPI.js";
+import { Pedidos } from "../models/pedidos.js";
 import { Url } from "url";
 export class PedidosService {
     constructor(private _apiService: ApiService) {}
