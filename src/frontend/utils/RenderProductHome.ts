@@ -1,7 +1,10 @@
 import { Produto } from "../models/produto.js";
+import { Navbar } from "../components/Navbar.js";
+import { AutenService } from "../services/ServiceAuthenticate.js";
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
 import { CarrinhoService } from "../services/ServiceCart.js";
 import { ApiService } from "../services/ServiceAPI.js";
+import { ToastsProduct } from "../components/ToastsProduct.js";
 
 export class DomProduto {
 	static renderProdutos(produtos: Produto[]): void {
@@ -51,8 +54,8 @@ export class DomProduto {
 					JSON.parse(userDataString)["id_cliente"] || "0",
 					10
 				);
-				const apiServiceCarrinho = new ApiService("http://localhost:3000");
-				const carrinhoService = new CarrinhoService(apiServiceCarrinho);
+				const apiService = new ApiService("http://localhost:3000");
+				const carrinhoService = new CarrinhoService(apiService);
 				carrinhoService
 					.getCarrinhoCliente(idCliente)
 					.then((produtosCarrinho) => {
@@ -105,27 +108,31 @@ export class DomProduto {
 		const apiService = new ApiService("http://localhost:3000");
 		const carrinhoService = new CarrinhoService(apiService);
 
+		const autenService = new AutenService();
+		const navbar = new Navbar(autenService);
+
 		if (isAddedToCart) {
 			await carrinhoService.adicionarCarrinhoProduto(idCliente, produto._id, 1);
 			button.classList.remove("btn-warning");
 			button.classList.add("btn-danger");
 			button.textContent = "Remover do Carrinho";
+			navbar.updateCartBadge();
+			ToastsProduct.renderProductsAdd();
 		} else {
 			const produtosCarrinho =
 				await carrinhoService.getCarrinhoCliente(idCliente);
-			console.log(produtosCarrinho);
 			const produtoCarrinho = produtosCarrinho.find(
 				(produtoCarrinho: ProdutoCarrinho) =>
 					produtoCarrinho._idProduto === produto._id &&
 					produtoCarrinho._idcliente === idCliente
 			);
 			if (produtoCarrinho) {
-				console.log("deletarProdutoCarrinho");
-				console.log(produtoCarrinho._id);
 				await carrinhoService.deletarProdutoCarrinho(
 					produtoCarrinho._id,
 					idCliente
 				);
+				ToastsProduct.renderProductsRemove();
+				navbar.updateCartBadge();
 			}
 			button.classList.remove("btn-danger");
 			button.classList.add("btn-warning");
