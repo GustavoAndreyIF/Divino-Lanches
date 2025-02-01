@@ -10,8 +10,13 @@ export class EventManager {
 	constructor(private domMain: DomMain) {}
 
 	initializeEvents(): void {
-		document.getElementById("linkHome")?.addEventListener("click", () => {
-			this.domMain.loadPage("./pages/home.html", this.loadHomePage.bind(this));
+		document.querySelectorAll("#linkHome").forEach((element) => {
+			element.addEventListener("click", () => {
+				this.domMain.loadPage(
+					"./pages/home.html",
+					this.loadHomePage.bind(this)
+				);
+			});
 		});
 
 		document.getElementById("linkLogout")?.addEventListener("click", () => {

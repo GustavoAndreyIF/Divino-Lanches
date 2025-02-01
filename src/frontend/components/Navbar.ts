@@ -57,10 +57,10 @@ export class Navbar {
 		const carrinhoService = new CarrinhoService(apiServiceCarrinho);
 		const carrinho = await carrinhoService.getCarrinhoCliente(idCliente);
 		const itemCount = carrinho.length;
-        document.getElementById("carrinhoNav")!.innerHTML = 
-            `<span id="badgeCarrinho" class="badge rounded-pill bg-light text-danger position-absolute ms-4 mt-0" title="${itemCount} produto(s) no carrinho"><small>${itemCount}</small></span>
-            <a href="#" id="linkCarrinho" class="nav-link text-dark">
-                <i class="bi-cart" style="font-size: 24px; line-height: 24px"></i>
-            </a>`
+        const badgeCarrinho = document.getElementById("badgeCarrinho");
+        if (badgeCarrinho) {
+            badgeCarrinho.setAttribute("title", `${itemCount} produto(s) no carrinho`);
+            badgeCarrinho.querySelector("small")!.textContent = `${itemCount}`;
+        }
     }
 }
