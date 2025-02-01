@@ -117,9 +117,8 @@ INSERT INTO `tb_products` (`id_Product`, `nm_Product`, `price_Product`, `qt_Esto
 (15, 'Coxinha', 4, 27, 'salgado', 'Coxinha com rechieo de frango desfiado.'),
 (16, 'Torta salgada', 5, 37, 'salgado', 'Torta salgada com recheio de carne.'),
 (17, 'Brownie', 3, 26, 'doce', 'Pequeno bolo de chocolate.'),
-(18, 'Bolinho de macaxeira', 3.5, 11, 'salgado', 'Bolinho de macaxeira frito.'),
-(19, 'Pudim', 5, 32, 'doce', 'Pudim cremoso.'),
-(20, 'Dindin', 5, 17, 'doce', 'Dindin de ninho com nutella.');
+(18, 'Pudim', 5, 32, 'doce', 'Pudim cremoso.'),
+(19, 'Dindin', 5, 17, 'doce', 'Dindin de ninho com nutella.');
 
 
 --
