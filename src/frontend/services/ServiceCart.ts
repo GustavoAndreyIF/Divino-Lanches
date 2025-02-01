@@ -1,5 +1,6 @@
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
 import { ApiService } from "./ServiceAPI.js";
+import { ProdutoService } from "./ServiceProduct.js";
 
 export class CarrinhoService {
 	constructor(private _apiService: ApiService) {}
@@ -47,7 +48,12 @@ export class CarrinhoService {
 			id_produto: id_produtoSTR,
 			Qt_Product_Carrinho: Qt_Product_CarrinhoSTR,
 		});
-		await this._apiService.post("CriarProdutoCarrinho/", reqBody);
+		try {
+			let response = await this._apiService.post("CriarProdutoCarrinho/", reqBody);
+			console.log("Produto", await new ProdutoService(new ApiService("http://localhost:3000")).getProdutoPorId(id_produto), "adicionado ao carrinho com sucesso:", response);
+		} catch (error) {
+			console.error("Erro ao adicionar produto ao carrinho:", error);
+		}
 		return;
 	}
 
