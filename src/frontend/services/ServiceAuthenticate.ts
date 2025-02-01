@@ -54,12 +54,17 @@ export class AutenService {
 	}
 	// Método para verificar se há um usuário logado no localStorage
 	isLoggedIn(): boolean {
-		return localStorage.getItem("user") !== null;
+		const user = localStorage.getItem("user");
+		if (user === "undefined") {
+			localStorage.removeItem("user");
+			return false;
+		}
+		return user !== null;
 	}
 
 	// Método para obter os dados do usuário logado
 	getUserData(): any {
 		const user = localStorage.getItem("user");
-		return user ? user: null;
+		return user ? user : null;
 	}
 }

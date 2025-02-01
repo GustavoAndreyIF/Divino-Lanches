@@ -2,6 +2,7 @@ import { AutenService } from "../services/ServiceAuthenticate.js";
 import { DomHeaderFooter } from "../utils/RenderHeaderFooter.js";
 import { DomMain } from "../utils/ManagerDOM.js";
 import { EventManager } from "../utils/ManagerEvent.js";
+import { ToastsAuthenticate } from "../components/ToastsAuthenticate.js";
 
 export class AutenticarController {
 	private autenService: AutenService;
@@ -28,7 +29,7 @@ export class AutenticarController {
 					eventManager.loadHomePage.bind(eventManager)
 				);
 			} else {
-				alert("Login falhou. Por favor, verifique suas credenciais.");
+				ToastsAuthenticate.renderLoginFailed();
 			}
 		} catch (error) {
 			console.error("Erro durante o login:", error);

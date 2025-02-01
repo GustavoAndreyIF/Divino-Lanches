@@ -7,7 +7,7 @@
 				action="/Login"
 				method="POST"
 			>
-				<h1>Login</h1>
+				<h1>Identifique-se, por favor</h1>
 				<br />
 
 				<div class="form-floating mb-3">
@@ -51,12 +51,22 @@
 				</button>
 
 				<p class="mt-3">
+					Ainda não é cadastrado?
+					<span class="badge text-bg-warning">Clique aqui</span>
+					para se cadastrar.
+				</p>
+
+				<p class="mt-3">
 					Esqueceu sua senha?
-					<a href="#" class="text-decoration-none text-danger">Clique aqui</a>
+					<span class="badge text-bg-warning">Clique aqui</span>
 					para recuperá-la.
 				</p>
 			</form>
 		</div>
+		<div
+			class="toast-container position-fixed bottom-0 end-0 p-3"
+			id="toastPlacement"
+		></div>
 	</div>
 </main>
 
