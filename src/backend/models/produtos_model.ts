@@ -22,7 +22,7 @@ class ProdutosModel {
     targetCollumn: string,
     id_produto: number,
     callback: queryCallback,
-  ) {
+  ): any {
     const query = `SELECT ${targetCollumn} FROM tb_products WHERE ${idCollumn} = ${id_produto};`;
     db.query(query, callback);
   }
