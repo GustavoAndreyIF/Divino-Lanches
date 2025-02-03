@@ -57,4 +57,16 @@ export class Carrinho {
 			console.error("Elemento com ID 'valorTotal' não encontrado.");
 		}
 	}
+	public async renderProdutoTotal(produtoCarrinho: ProdutoCarrinho): Promise<void> {
+        const produto = await this.produtoService.getProdutoPorId(produtoCarrinho._idProduto);
+        const valorTotalElement = document.getElementById(`valorTotal-${produtoCarrinho._id}`);
+        if (valorTotalElement) {
+            valorTotalElement.innerHTML = `
+                <small class="text-secondary">Valor Unitário: R$ ${produto._preco.toFixed(2)}</small><br>
+                <span class="text-dark">Valor Total: R$ ${(produto._preco * produtoCarrinho._quantia).toFixed(2)}</span>
+            `;
+        } else {
+            console.error(`Elemento com ID 'valorTotal-${produtoCarrinho._id}' não encontrado.`);
+        }
+    }
 }
