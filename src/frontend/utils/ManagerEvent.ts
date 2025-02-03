@@ -5,6 +5,7 @@ import { ProdutoController } from "../controllers/ControllerProduct.js";
 import { DomProduto } from "./RenderProductHome.js";
 import { DomHeaderFooter } from "./RenderHeaderFooter.js";
 import { Carrinho } from "./RenderCart.js";
+import { UserMenu } from "../components/UserMenu.js";
 
 export class EventManager {
 	constructor(private domMain: DomMain) {}
@@ -19,11 +20,11 @@ export class EventManager {
 			});
 		});
 
-		document.getElementById("linkLogout")?.addEventListener("click", () => {
-			localStorage.removeItem("user");
-			this.domMain.loadPage("./pages/home.html", this.loadHomePage.bind(this));
-			const domHeaderFooter = new DomHeaderFooter();
-			domHeaderFooter.initialize();
+		document.querySelectorAll("#linkLogout").forEach((element) => {
+			element.addEventListener("click", () => {
+				localStorage.removeItem("user");
+				window.location.reload();
+			});
 		});
 
 		document.getElementById("linkQuemSomos")?.addEventListener("click", () => {
@@ -66,6 +67,14 @@ export class EventManager {
 				this.loadCarrinhoPage.bind(this)
 			);
 			this.domMain.clearHeaderCarousel();
+		});
+
+		document.getElementById("linkCliente")?.addEventListener("click", () => {
+			this.domMain.loadPage("./pages/cliente.html", () => {
+				const mainClienteDom = new DomMain("mainCliente");
+				const userMenu = new UserMenu(mainClienteDom);
+				userMenu.initialize();
+			});
 		});
 	}
 

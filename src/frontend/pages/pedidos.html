@@ -1,0 +1,95 @@
+<div class="col-8">
+	<form class="row mb-3">
+		<div class="col-12 col-md-6 mb-3">
+			<div class="form-floating">
+				<select class="form-select">
+					<option value="30">Últimos 30 dias</option>
+					<option value="60">Últimos 60 dias</option>
+					<option value="90">Últimos 90 dias</option>
+					<option value="180">Últimos 180 dias</option>
+					<option value="360" selected>Últimos 360 dias</option>
+					<option value="9999">Todo o período</option>
+				</select>
+				<label>Período</label>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="form-floating">
+				<select class="form-select">
+					<option value="1" selected>Mais novos primeiro</option>
+					<option value="2">Mais antigos primeiro</option>
+				</select>
+				<label>Ordenação</label>
+			</div>
+		</div>
+	</form>
+	<div class="accordion" id="divPedidos">
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button
+					class="accordion-button collapsed"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#pedido${numeroPedido}"
+				>
+					<b>Pedido ${numeroPedido}</b>
+					<span class="mx-1">Status do Pedido (${statusPedidos})</span>
+				</button>
+			</h2>
+			<div
+				id="pedido${numeroPedido}"
+				class="accordion-collapse collapse"
+				data-bs-parent="#divPedidos"
+			>
+				<div class="accordion-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Produto</th>
+								<th class="text-end">R$ Unit.</th>
+								<th class="text-center">Qtde.</th>
+								<th class="text-end">Subtotal</th>
+							</tr>
+						</thead>
+						<tbody id="pedidoProdutos">
+							<tr>
+								<td>${produtos.produto.nome}</td>
+								<td class="text-end">R$ ${produtos.produto.preco}</td>
+								<td class="text-center">
+									${produtos.produto.quantidade}
+								</td>
+								<td class="text-end">
+									R$ ${produtos.produto.precosubtotal}
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th class="text-end" colspan="3">
+									Valor dos Produtos:
+								</th>
+								<td class="text-end">
+									R$ ${produtos.produto.precototal}
+								</td>
+							</tr>
+							<tr>
+								<th class="text-end" colspan="3">Valor do Frete:</th>
+								<td class="text-end">R$ ${frete}</td>
+							</tr>
+							<tr>
+								<th class="text-end" colspan="3">Valor a Pagar:</th>
+								<td class="text-end">R$ ${precoTotal}</td>
+							</tr>
+							<tr>
+								<th class="text-end" colspan="3">
+									Forma de Pagamento:
+								</th>
+								<td class="text-end">${formaPagamento}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

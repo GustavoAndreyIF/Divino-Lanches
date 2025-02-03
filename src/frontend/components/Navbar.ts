@@ -30,11 +30,15 @@ export class Navbar {
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                     <li class="nav-item">
-                        <a href="#" id="linkPedidos" class="btn btn-light">Pedidos</a>
+                        <a href="#" id="linkCliente" class="btn btn-light">
+                        <i class="bi-person fs-6"></i> Sua conta
+                        </a>
                     </li>
                       <li><hr class="dropdown-divider"></li>
                     <li class="nav-item">
-                        <a href="#" id="linkLogout" class="btn btn-light">Sair</a>
+                        <a href="#" id="linkLogout" class="btn btn-light">
+                        <i class="bi-door-open fs-6"></i> Sair
+                        </a>
                     </li>
                     </ul>
                 </div>
