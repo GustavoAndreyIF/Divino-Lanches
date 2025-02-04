@@ -53,7 +53,7 @@ export class CardProduto {
                                     <i class="bi-trash" style="font-size: 16px; line-height: 16px;"></i>
                                 </button>
                             </div>
-                            <div class="text-end mt-2">
+                            <div class="text-end mt-2" id="valorTotal-${produtoCarrinho._id}">
                                 <small class="text-secondary">Valor Unitário: R$ ${produto._preco.toFixed(2)}</small><br>
                                 <span class="text-dark">Valor Total: R$ ${(produto._preco * produtoCarrinho._quantia).toFixed(2)}</span>
                             </div>

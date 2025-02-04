@@ -3,13 +3,16 @@ import { ProdutoService } from "../services/ServiceProduct.js";
 import { ToastsProduct } from "../components/ToastsProduct.js";
 import { ApiService } from "../services/ServiceAPI.js";
 import { ProdutoCarrinho } from "../models/produtoCarrinho.js";
+import { Carrinho } from "./RenderCart.js";
 
 export class ManagerCart {
     private produtoService: ProdutoService;
+    private carrinho: Carrinho;
 
     constructor(private carrinhoService: CarrinhoService) {
         const apiService = new ApiService("http://localhost:3000");
         this.produtoService = new ProdutoService(apiService);
+        this.carrinho = new Carrinho();
     }
 
     async handleIncrease(produtoCarrinho: ProdutoCarrinho): Promise<void> {
@@ -19,6 +22,7 @@ export class ManagerCart {
             quantity += 1;
             input.value = quantity.toString();
             await this.updateQuantity(produtoCarrinho._id, quantity);
+            await this.carrinho.renderProdutoTotal(produtoCarrinho);
         } else {
             console.error(`Input element not found for id: ${produtoCarrinho._id}`);
         }
@@ -32,19 +36,11 @@ export class ManagerCart {
                 quantity -= 1;
                 input.value = quantity.toString();
                 await this.updateQuantity(produtoCarrinho._id, quantity);
+                await this.carrinho.renderProdutoTotal(produtoCarrinho);
             }
         } else {
             console.error(`Input element not found for id: ${produtoCarrinho._id}`);
         }
-    }
-
-    async handleDelete(produtoCarrinho: ProdutoCarrinho): Promise<void> {
-        const userDataString: string = localStorage.getItem("user") ?? "";
-        const idCliente = parseInt(JSON.parse(userDataString)["id_cliente"] || "0", 10);
-        await this.carrinhoService.deletarProdutoCarrinho(produtoCarrinho._id, idCliente);
-        document.getElementById(`produtoCarrinho-${produtoCarrinho._id}`)?.remove();
-        ToastsProduct.renderProductsRemove();
-        this.updateTotal();
     }
 
     async handleInputChange(event: Event, produtoCarrinho: ProdutoCarrinho): Promise<void> {
@@ -55,6 +51,16 @@ export class ManagerCart {
             input.value = "1";
         }
         await this.updateQuantity(produtoCarrinho._id, quantity);
+        await this.carrinho.renderProdutoTotal(produtoCarrinho);
+    }
+
+    async handleDelete(produtoCarrinho: ProdutoCarrinho): Promise<void> {
+        const userDataString: string = localStorage.getItem("user") ?? "";
+        const idCliente = parseInt(JSON.parse(userDataString)["id_cliente"] || "0", 10);
+        await this.carrinhoService.deletarProdutoCarrinho(produtoCarrinho._id, idCliente);
+        document.getElementById(`produtoCarrinho-${produtoCarrinho._id}`)?.remove();
+        ToastsProduct.renderProductsRemove();
+        this.updateTotal();
     }
 
     async updateQuantity(id: number, quantity: number): Promise<void> {

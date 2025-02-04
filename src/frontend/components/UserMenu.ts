@@ -74,6 +74,7 @@ export class UserMenu {
         if (pageId && pageMap[pageId]) {
             const mainClienteDom = new DomMain("mainCliente");
             await mainClienteDom.loadPage(pageMap[pageId]);
+            // carregar script das paginas aqu
         }
     }
 }
