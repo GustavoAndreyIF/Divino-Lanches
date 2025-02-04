@@ -7,9 +7,8 @@ import { resolve } from "path";
 class PedidoControle extends PedidoModel{
     constructor(private Carrinho_Controle: Carrinho_Controle){super()}
     async pegar_pedido(req: Request, res: Response){
-        const id_pedido: number = parseInt(req.params.id_pedido);
         const id_cliente: number = parseInt(req.params.id_cliente)
-        this.get_Pedido(id_pedido, id_cliente, (err: MysqlError | null, Pedidos: any) => {
+        this.get_Pedido(id_cliente, (err: MysqlError | null, Pedidos: any) => {
             if (err) return res.send(err);
             res.json(Pedidos)
         })

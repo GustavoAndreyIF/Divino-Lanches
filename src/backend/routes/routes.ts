@@ -52,7 +52,7 @@ router.post('/Login', async (req,res) =>
 
 //Pedidos
 
-router.get('/getPedidos/:id_pedido/cliente/:id_cliente', async (req, res) =>
+router.get('/getPedidos/:id_cliente', async (req, res) =>
   mainPedidos.pegar_pedido(req, res),
 );
 
