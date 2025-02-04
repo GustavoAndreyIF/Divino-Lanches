@@ -25,7 +25,13 @@ class PedidoControle extends PedidoModel{
             })
         })
 
-        let id_pedido: number = id_pedido_list ? id_pedido_list.sort()[id_pedido_list] + 1 : 1
+        let id_pedido: number; 
+        if (id_pedido_list.length == 0) {
+            id_pedido = 1;
+        }
+        else {
+            id_pedido = id_pedido_list.sort()[id_pedido_list.length - 1].id_pedido + 1;
+        }
 
         let CarrinhoObjects: any = await new Promise((resolve, rejects) => {
             this.Carrinho_Controle.get_Carrinho('id_cliente', id_cliente, (err: MysqlError | null, Produtos: any) => {
@@ -43,7 +49,7 @@ class PedidoControle extends PedidoModel{
 
         for (let object of CarrinhoObjects) {
             await new Promise((resolve, rejects) => {
-                this.create_Pedido(id_cliente,object.id_Product,object.Qt_Product_Carrinho,status_pedido,(err: MysqlError | null, Resultado: any) => {
+                this.create_Pedido(id_pedido, id_cliente,object.id_Product,object.Qt_Product_Carrinho,status_pedido,(err: MysqlError | null, Resultado: any) => {
                     if (err) return res.send(err);
                     resolve(Resultado);
                 });

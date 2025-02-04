@@ -6,8 +6,8 @@ class PedidoModel{
         const query = `SELECT * FROM tb_pedidos WHERE id_pedido = ${id_pedido} AND id_cliente = ${id_cliente}`;
         db.query(query, callback);
     };
-    create_Pedido(id_cliente: number, id_produto: number, qt_pedido: number, status_pedido: string,  callback:queryCallback): any{
-        const query = ``;
+    create_Pedido(id_pedido: number, id_cliente: number, id_produto: number, qt_pedido: number, status_pedido: string,  callback:queryCallback): any{
+        const query = `INSERT INTO tb_pedidos (id_pedido, id_cliente, id_Produto, Qt_pedido, status_pedido) VALUES (${id_pedido}, ${id_cliente}, ${id_produto}, ${qt_pedido}, '${status_pedido}')`;
         db.query(query, callback)
     };
     get_id_Pedido_cliente(id_cliente: number, callback:queryCallback):any {
