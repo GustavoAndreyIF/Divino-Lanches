@@ -1,24 +1,36 @@
 import { ApiService } from "./ServiceAPI.js";
-import { Pedidos } from "../models/pedidos.js";
+import { OrderObject } from "../models/OrderObject.js";
+
 export class PedidosService {
     constructor(private _apiService: ApiService) {}
-    
-    async getPedido(id_cli: number): Promise<any> {
-        let pedido_Produtos= await this._apiService.get(`getPedidos/${id_cli}`);
-        let pedido: Pedidos[] =[];
-        pedido_Produtos.forEach((produto: any) => {
-            pedido.push(new Pedidos(produto.id_pedido, produto.id_cliente, produto.id_produto, produto.Qt_Pedido, produto.status_pedido));
+
+    async getAllPedidos(id_cliente: number): Promise<OrderObject[]> {
+        const pedidosData = await this._apiService.get(`getPedidos/${id_cliente}`);
+        const pedidosMap: { [key: number]: OrderObject } = {};
+
+        pedidosData.forEach((pedido: any) => {
+            if (!pedidosMap[pedido.id_pedido]) {
+                pedidosMap[pedido.id_pedido] = new OrderObject(
+                    pedido.id_pedido,
+                    pedido.id_cliente,
+                    [],
+                    [],
+                    pedido.status_pedido
+                );
+            }
+            pedidosMap[pedido.id_pedido].id_Produto.push(pedido.id_Produto);
+            pedidosMap[pedido.id_pedido].Qt_pedido.push(pedido.Qt_pedido);
         });
-        return pedido;
+
+        return Object.values(pedidosMap);
     }
 
-    async criarPedido(id_cliente: number, status_pedido: string,) {
-        let reqBody: URLSearchParams = new URLSearchParams({
-            id_cliente: id_cliente.toString(), 
+    async criarPedido(id_cliente: number, status_pedido: string) {
+        const reqBody: URLSearchParams = new URLSearchParams({
+            id_cliente: id_cliente.toString(),
             status_pedido: status_pedido.toString(),
-        })
+        });
         await this._apiService.post('criarpedido/', reqBody);
         return;
-    } 
-    
+    }
 }

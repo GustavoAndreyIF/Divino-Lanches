@@ -7,10 +7,9 @@ export class ManagerOrder {
     constructor() {
         const apiService = new ApiService("http://localhost:3000");
         this.cardOrderProduct = new CardOrderProduct(apiService);
-        this.carregarPedidos();
     }
 
-    private async carregarPedidos(): Promise<void> {
+    public async carregarPedidos(): Promise<void> {
         let userdataString: string = localStorage.getItem("user") ?? "";
         const idCliente = parseInt(JSON.parse(userdataString)["id_cliente"] || "0", 10);
         const pedidosHtml = await this.cardOrderProduct.render(idCliente);

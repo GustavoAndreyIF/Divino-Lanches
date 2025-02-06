@@ -1,6 +1,6 @@
 import { PedidosService } from "../services/ServiceOrder.js";
 import { ProdutoService } from "../services/ServiceProduct.js";
-import { Pedidos } from "../models/pedidos.js";
+import { OrderObject } from "../models/OrderObject.js";
 import { Produto } from "../models/produto.js";
 
 export class CardOrderProduct {
@@ -13,54 +13,35 @@ export class CardOrderProduct {
     }
 
     async render(idCliente: number): Promise<string> {
-        const pedidos = await this.pedidosService.getPedido(idCliente);
-        let htmlContent = '';
-        let currentPedidoId = null;
+        const pedidos = await this.pedidosService.getAllPedidos(idCliente);
+        let htmlContent = "";
 
         for (const pedido of pedidos) {
-            let produtosHtml = '';
+            let produtosHtml = "";
+            let totalProdutos = 0;
 
-            const produto = await this.produtoService.getProdutoPorId(Number(pedido.id_Produto));
-            produtosHtml += `
-                <tr>
-                    <td>${produto._nome}</td>
-                    <td class="text-end">R$ ${produto._preco.toFixed(2)}</td>
-                    <td class="text-center">${pedido.Qt_pedido}</td>
-                    <td class="text-end">R$ ${(produto._preco * Number(pedido.Qt_pedido)).toFixed(2)}</td>
-                </tr>
-            `;
-
-            if (currentPedidoId !== pedido.id_pedido) {
-                if (currentPedidoId !== null) {
-                    htmlContent += `
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">R$ ${pedido.valor_total}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">R$ ${pedido.frete}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">R$ ${pedido.preco_total}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">${pedido.forma_pagamento}</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>`;
+            for (let i = 0; i < pedido.id_Produto.length; i++) {
+                try {
+                    const produto = await this.produtoService.getProdutoPorId(pedido.id_Produto[i]);
+                    const subtotal = produto._preco * pedido.Qt_pedido[i];
+                    totalProdutos += subtotal;
+                    produtosHtml += `
+                        <tr>
+                            <td>${produto._nome}</td>
+                            <td class="text-end">R$ ${produto._preco.toFixed(2)}</td>
+                            <td class="text-center">${pedido.Qt_pedido[i]}</td>
+                            <td class="text-end">R$ ${subtotal.toFixed(2)}</td>
+                        </tr>
+                    `;
+                } catch (error) {
+                    console.error(`Erro ao renderizar produto com ID ${pedido.id_Produto[i]}:`, error);
                 }
+            }
 
-                currentPedidoId = pedido.id_pedido;
+            const valorFrete = 3.00;
+            const valorTotal = totalProdutos + valorFrete;
 
-                htmlContent += `
+            htmlContent += `
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button
@@ -90,37 +71,30 @@ export class CardOrderProduct {
                                 </thead>
                                 <tbody id="pedidoProdutos${pedido.id_pedido}">
                                     ${produtosHtml}
-                `;
-            } else {
-                htmlContent += produtosHtml;
-            }
-        }
-
-        if (currentPedidoId !== null) {
-            htmlContent += `
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor dos Produtos:</th>
-                                        <td class="text-end">R$ ${pedido.valor_total}</td>
+                                        <td class="text-end">R$ ${totalProdutos.toFixed(2)}</td>
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor do Frete:</th>
-                                        <td class="text-end">R$ ${pedido.frete}</td>
+                                        <td class="text-end">R$ ${valorFrete.toFixed(2)}</td>
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Valor a Pagar:</th>
-                                        <td class="text-end">R$ ${pedido.preco_total}</td>
+                                        <td class="text-end">R$ ${valorTotal.toFixed(2)}</td>
                                     </tr>
                                     <tr>
                                         <th class="text-end" colspan="3">Forma de Pagamento:</th>
-                                        <td class="text-end">${pedido.forma_pagamento}</td>
+                                        <td class="text-end">pix</td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
-                </div>`;
+                </div>
+            `;
         }
 
         return htmlContent;

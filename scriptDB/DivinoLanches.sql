@@ -80,6 +80,19 @@ CREATE TABLE `tb_pedidos` (
   `status_pedido` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `tb_pedidos`
+--
+
+INSERT INTO `tb_pedidos` (`id_pedido`, `id`, `id_cliente`, `id_Produto`, `Qt_pedido`, `status_pedido`) VALUES
+(1, 1, 1, 1, 1, 'entregue'),
+(1, 2, 1, 2, 1, 'entregue'),
+(1, 3, 1, 3, 1, 'entregue'),
+(2, 4, 1, 4, 1, 'entregue'),
+(2, 5, 1, 5, 1, 'entregue'),
+(2, 6, 1, 6, 1, 'entregue');
+
+
 -- --------------------------------------------------------
 
 --

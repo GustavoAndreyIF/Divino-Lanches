@@ -1,4 +1,5 @@
 import { DomMain } from "../utils/ManagerDOM.js";
+import { ManagerOrder } from "../utils/managerOrder.js";
 
 export class UserMenu {
     constructor(private domMain: DomMain) {}
@@ -74,7 +75,11 @@ export class UserMenu {
         if (pageId && pageMap[pageId]) {
             const mainClienteDom = new DomMain("mainCliente");
             await mainClienteDom.loadPage(pageMap[pageId]);
-            // carregar script das paginas aqu
+
+            if (pageId === "linkClientePedidos") {
+                const managerOrder = new ManagerOrder();
+                await managerOrder.carregarPedidos();
+            }
         }
     }
 }
