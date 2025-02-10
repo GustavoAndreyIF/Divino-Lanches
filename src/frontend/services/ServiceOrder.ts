@@ -30,7 +30,20 @@ export class PedidosService {
             id_cliente: id_cliente.toString(),
             status_pedido: status_pedido.toString(),
         });
-        await this._apiService.post('criarpedido/', reqBody);
-        return;
+        const response = await this._apiService.post('criarpedido/', reqBody);
+        if (response.ok) {
+            return await response.text(); // Handle non-JSON response
+        } else {
+            throw new Error(`Failed to create order: ${response.statusText}`);
+        }
+    }
+
+    async getUltimoPedidoId(id_cliente: number): Promise<number> {
+        const pedidos = await this.getAllPedidos(id_cliente);
+        if (pedidos.length === 0) {
+            throw new Error("Nenhum pedido encontrado para este cliente.");
+        }
+        const ultimoPedido = pedidos.reduce((max, pedido) => pedido.id_pedido > max ? pedido.id_pedido : max, pedidos[0].id_pedido);
+        return ultimoPedido;
     }
 }

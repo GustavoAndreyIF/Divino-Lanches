@@ -5,7 +5,7 @@ import { Produto } from "../models/produto.js";
 
 export class CardOrderProduct {
     private pedidosService: PedidosService;
-    private produtoService: ProdutoService;
+    public produtoService: ProdutoService;
 
     constructor(apiService: any) {
         this.pedidosService = new PedidosService(apiService);
