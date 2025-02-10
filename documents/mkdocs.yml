@@ -1,0 +1,15 @@
+site_name: docs_Ecommerce
+site_author: Leonardo furtado Kauffmann
+
+nav:
+  - Home: index.md
+  - estrutura de pastas: estruturaPastas.md
+  - Dependências e arquivos e scripts: arquivosConfig.md
+  - Backend: Backend.md
+
+
+theme:
+  name: material
+
+plugins: 
+  - search 
