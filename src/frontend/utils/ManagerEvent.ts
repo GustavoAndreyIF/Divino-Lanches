@@ -64,7 +64,7 @@ export class EventManager {
 		document.getElementById("linkCarrinho")?.addEventListener("click", () => {
 			this.domMain.loadPage(
 				"./pages/carrinho.html",
-				this.loadCarrinhoPage.bind(this)
+				this.loadCarrinhoPage
 			);
 			this.domMain.clearHeaderCarousel();
 		});
@@ -102,8 +102,9 @@ export class EventManager {
 		this.domMain.clearHeaderCarousel();
 		this.domMain.loadPage(pageUrl);
 	}
-
 	private loadCarrinhoPage(): void {
-		new Carrinho();
+		const cart = new Carrinho();
+		cart.carregarProdutos()
 	}
+
 }
