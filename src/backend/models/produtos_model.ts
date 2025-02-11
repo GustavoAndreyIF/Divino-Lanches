@@ -1,5 +1,5 @@
 import { queryCallback } from "mysql";
-import db from "../config/db.js";
+import db from "../config/db";
 class ProdutosModel {
   constructor() {}
   getAll(callback: queryCallback): any {

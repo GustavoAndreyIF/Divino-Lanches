@@ -1,10 +1,15 @@
-import { Config } from 'jest';
+import type { Config } from '@jest/types';
 
-const config: Config = {
+const config: Config.InitialOptions = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  moduleFileExtensions: ['js', 'ts'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.ts$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^src/(.*)': '<rootDir>/src/$1',
+    '^config/(.*)': '<rootDir>/src/config/$1',
   },
 };
 

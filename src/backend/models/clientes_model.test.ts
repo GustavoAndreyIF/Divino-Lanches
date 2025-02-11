@@ -1,9 +1,12 @@
+jest.mock("../config/db", () => ({
+    query: jest.fn(),
+    connect: jest.fn(),
+    end: jest.fn()
+}));
+
+
 import ClienteModel from "./clientes_model";
 import db from "../config/db";
-
-jest.mock("../config/db", () => ({
-    query: jest.fn()
-}))
 
 describe('testando o modelo cliente', () => {
     let model: any;
@@ -13,6 +16,7 @@ describe('testando o modelo cliente', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
+        if (db.end) db.end()
     })
     
     describe('pegar o cliente', () => {
