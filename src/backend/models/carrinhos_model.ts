@@ -1,5 +1,5 @@
 import { queryCallback } from "mysql";
-import db from "../config/db.js";
+import db from "../config/db";
 class CarrinhoModel {
   constructor() {}
   get_Carrinho(id_key: string, value:number, callback: queryCallback): any {
