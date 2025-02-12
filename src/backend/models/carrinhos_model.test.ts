@@ -39,4 +39,31 @@ describe('testando o modelo dos carrinhos',() => {
             );
         });
     });
+    describe('remover o carrinho', () => {
+        test('remover o carrinho', () => {
+            model.remover('key',5,mockCallback);
+            expect(db.query).toHaveBeenCalledWith(
+                `DELETE FROM tb_carrinho_produtos WHERE key = 5`,
+                expect.any(Function)
+            );
+        });
+    });
+    describe('remover keyclient', () => {
+        test('remover keyclient', () => {
+            model.remover_keyCliente('key',6,7,mockCallback);
+            expect(db.query).toHaveBeenCalledWith(
+                `DELETE FROM tb_carrinho_produtos WHERE key = 6 AND id_cliente = 7`,
+                expect.any(Function)
+            );
+        });
+    });
+    describe('alterar atributo', () => {
+        test('alterar atributo', () => {
+            model.alt_Atributo('target',8,'collumn',9,mockCallback);
+            expect(db.query).toHaveBeenCalledWith(
+                `UPDATE tb_carrinho_produtos SET target = 8 WHERE collumn = 9`,
+                expect.any(Function)
+            );
+        });
+    });
 })
