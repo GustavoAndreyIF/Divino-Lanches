@@ -7,7 +7,7 @@ import { queryCallback } from "mysql";
 class ClienteControle extends ClienteModel{
     constructor(){super()}
     async obter_cliente(req: Request, res: Response){
-        const cliente_email: string = req.params.id_cliente;
+        const cliente_email: string = req.params.cliente_email;
         this.get_Cliente(cliente_email, (err: MysqlError | null, Resultado: any) => {
             if (err) return res.send(err);
             res.json(Resultado)
