@@ -60,7 +60,7 @@ router.post('/criarpedido', async (req, res) =>
   mainPedidos.criar_pedido(req, res)
 )
 
-router.delete('/deletarpedido/:id_pedido', async (req, res) => 
+router.delete('/deletarpedido/:id_pedido/cliente/:id_cliente', async (req, res) => 
   mainPedidos.deletar_pedido(req, res),
 )
 

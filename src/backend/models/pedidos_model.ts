@@ -14,8 +14,8 @@ class PedidoModel{
         const query = `SELECT id_pedido from tb_pedidos WHERE id_cliente = ${id_cliente}`;
         db.query(query, callback);
     }
-    delete_Pedido(id_pedido: number, callback:queryCallback): any {
-        const query = `DELETE FROM tb_pedidos WHERE id_pedido = ${id_pedido}`;
+    delete_Pedido(id_pedido: number, id_cliente: number, callback:queryCallback): any {
+        const query = `DELETE FROM tb_pedidos WHERE id_pedido = ${id_pedido} AND id_cliente = ${id_cliente}`;
         db.query(query, callback);
     }
     alt_status_pedido(id_pedido: number, status_pedido: string, callback:queryCallback): any{

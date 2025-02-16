@@ -58,7 +58,8 @@ class PedidoControle extends PedidoModel{
     }
     async deletar_pedido(req: Request, res: Response){
         const id_pedido: number = parseInt(req.params.id_pedido);
-        this.delete_Pedido(id_pedido, (err: MysqlError | null, Resultado: any) => {
+        const id_cliente: number = parseInt(req.params.id_cliente);
+        this.delete_Pedido(id_pedido, id_cliente, (err: MysqlError | null, Resultado: any) => {
             if (err) return res.send(err);
             res.json(Resultado)
         })
